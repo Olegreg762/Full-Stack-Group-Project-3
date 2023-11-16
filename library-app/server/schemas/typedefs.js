@@ -2,24 +2,25 @@ const typeDefs = `
 type Book {
     _id: ID
     authors: String
-    description: String
+    description: String!
     bookId: String
     image: String
     link: String
-    title: String
+    title: String!
 }
 
 type Library {
     _id: ID
-    libraryowner: User
+    libraryname: String!
+    libraryowner: User!
     books: [Book]
 }
 
 type User {
     _id: ID
-    username: String
-    email: String
-    password: String
+    username: String!
+    email: String!
+    password: String!
     isteacher: Boolean
     checkedbooks: [Book]
 }

@@ -23,6 +23,10 @@ const bookSchema = new Schema ({
     title: {
         type: String,
         required: true
+    },
+    avaliable: {
+        type: Boolean,
+        required: true
     }
 });
 

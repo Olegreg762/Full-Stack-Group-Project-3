@@ -1,7 +1,7 @@
 const {Schema, model} = require('mongoose');
 const bcrypt = require('bcrypt');
 
-const bookSchema = require('./Book');
+const {bookSchema} = require('./Book');
 
 const userSchema = new Schema (
     {
@@ -24,7 +24,7 @@ const userSchema = new Schema (
         type: Boolean,
         required: true
     },
-    checkedbooks: [bookSchema]
+    // checkedbooks: [bookSchema]
     },
     {
         toJSON: {

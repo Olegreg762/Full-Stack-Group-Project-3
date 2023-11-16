@@ -7,6 +7,7 @@ type Book {
     image: String
     link: String
     title: String!
+    availible: Boolean
 }
 
 type Library {
@@ -32,3 +33,4 @@ type Query{
 }
 
 `
+module.exports = typeDefs

@@ -1,0 +1,20 @@
+[
+    {
+        "authors": "Greg",
+        "description": "A science fiction book about space",
+        "bookId": 1,
+        "image": "https://placehold.co/600x400",
+        "link": "https://placehold.co/600x400",
+        "title": "Greg's Space Odyssey",
+        "availible": true
+    },
+    {
+        "authors": "Tim",
+        "description": "A  Capybara goes on an amazing adventure",
+        "bookId": 2,
+        "image": "https://placehold.co/600x400",
+        "link": "https://placehold.co/600x400",
+        "title": "Hold My Cap",
+        "availible": false
+    }
+]

@@ -24,7 +24,7 @@ const bookSchema = new Schema ({
         type: String,
         required: true
     },
-    avaliable: {
+    available: {
         type: Boolean,
         required: true
     }
@@ -32,4 +32,4 @@ const bookSchema = new Schema ({
 
 const Book = model('Book', bookSchema);
 
-module.exports = Book, bookSchema;
+module.exports = Book;

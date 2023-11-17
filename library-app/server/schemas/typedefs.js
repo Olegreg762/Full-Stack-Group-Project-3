@@ -26,11 +26,12 @@ type User {
     checkedbooks: [Book]
 }
 
-type Query{
+ type Query {
     books: [Book]
     libraries: [Library]
-    users: [Users]
-    libraries($library: ID): Library
+    users: [User]
+    user(_id: ID!): User
+    book(bookId: String): Book
 }
 
 type Auth {

@@ -11,9 +11,15 @@ const resolvers = {
         users: async () => {
             return User.find().populate('checkedbooks');
           },
-         user: async (parent, { username }) => {
-            return User.findOne({ username }).populate('checkedbooks');
+         user: async (parent, { _id }) => {
+            return User.findById( _id ).populate('checkedbooks');
           },
+          libraries: async () => {
+            return Library.find({})
+          },
+          library: async (parent, { _id }) => {
+            return Library.findById(_id)
+          }
     }
 }
 

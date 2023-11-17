@@ -6,7 +6,7 @@
         "image": "https://placehold.co/600x400",
         "link": "https://placehold.co/600x400",
         "title": "Greg's Space Odyssey",
-        "availible": true
+        "available": true
     },
     {
         "authors": "Tim",
@@ -15,6 +15,6 @@
         "image": "https://placehold.co/600x400",
         "link": "https://placehold.co/600x400",
         "title": "Hold My Cap",
-        "availible": false
+        "available": false
     }
 ]

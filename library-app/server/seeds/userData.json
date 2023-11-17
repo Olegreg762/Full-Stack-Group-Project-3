@@ -1,0 +1,26 @@
+[
+    {
+        "username": "Brett",
+        "email": "brett@brett.com",
+        "password": "password",
+        "isteacher": true
+    },
+    {
+        "username": "Tim",
+        "email": "brett@brett.com",
+        "password": "password",
+        "isteacher": false
+    },
+    {
+        "username": "Kevin",
+        "email": "brett@brett.com",
+        "password": "password",
+        "isteacher": true
+    },
+    {
+        "username": "Greg",
+        "email": "brett@brett.com",
+        "password": "password",
+        "isteacher": false
+    }
+]

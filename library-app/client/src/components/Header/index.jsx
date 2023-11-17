@@ -1,23 +1,18 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import React from "react";
 
-const Footer = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
+const Header = () => {
   return (
-    <footer className="">
+    <header className="header">
       <div className="">
-        {location.pathname !== '/' && (
-          <button
-            className=""
-            onClick={() => navigate(-1)}
-          >
-            &larr; Go Back
-          </button>
-        )}
-        <h4>&copy; {new Date().getFullYear()} - C.H.L.O.E</h4>
+       <button className="btn">
+          Profile
+       </button>
+       <button className="btn">
+          libraries
+       </button>
       </div>
-    </footer>
+    </header>
   );
 };
 
-export default Footer;
+export default Header;

@@ -32,6 +32,7 @@ type User {
     users: [User]
     user(_id: ID!): User
     book(bookId: String): Book
+    library(_id: ID!): Library
 }
 
 type Auth {

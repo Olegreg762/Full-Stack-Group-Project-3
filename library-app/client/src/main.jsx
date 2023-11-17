@@ -1,43 +1,43 @@
-// import React from 'react'
-// import ReactDOM from 'react-dom/client'
-// import App from './App.jsx'
-// import './index.css'
-// import { createBrowswerRouter, createRoutesFromElements, RouterProvider } from "react-router-dom";
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.jsx'
+import './index.css'
+import { createBrowserRouter, createRoutesFromElements, RouterProvider } from "react-router-dom";
 
-// import LibraryHub from './pages/LibraryHub.jsx';
-// import LibraryPage from './pages/LibraryPage.jsx';
-// import LoginPage from './pages/LoginPage.jsx';
-// import ProfilePage from './pages/ProfilePage.jsx'
-// import RootLayout from './layouts/rootlayout.jsx';
+import LibraryHub from './pages/LibraryHub.jsx';
+import LibraryPage from './pages/LibraryPage.jsx';
+import LoginPage from './pages/LoginPage.jsx';
+import ProfilePage from './pages/ProfilePage.jsx'
+import RootLayout from './layouts/rootlayout.jsx';
 
-// const router = createBrowswerRouter(
-// //   [
-// //   {
-// //     path:"/",
-// //     element: <App />,
-// //     errorElement: <ErrorPage />,
-// //     children: [
-// //       {
-// //         index: true,
-// //       element: <LoginPage />
-// //     }, {
-// //       path: '/profiles/:profileId',
-// //       element: <ProfilePage />
-// //     }, {
-// //       path: '/libraries',
-// //       element: <LibraryHub />
-// //     }, {
-// //       path: '/library/:libraryId',
-// //       element: <LibraryPage />
-// //     }
-// //     ]
-// //   }
-// // ]
-// )
-
-
+const router = createBrowserRouter(
+  [
+  {
+    path:"/",
+    element: <App />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+      element: <LoginPage />
+    }, {
+      path: '/profiles/:profileId',
+      element: <ProfilePage />
+    }, {
+      path: '/libraries',
+      element: <LibraryHub />
+    }, {
+      path: '/library/:libraryId',
+      element: <LibraryPage />
+    }
+    ]
+  }
+]
+)
 
 
-// ReactDOM.createRoot(document.getElementById('root')).render(
-//   <RouterProvider router={router} />
-// )
+
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <RouterProvider router={router} />
+)

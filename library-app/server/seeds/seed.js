@@ -1,3 +1,4 @@
+
 const db = require('../config/connection');
 const { Book, Library, User} = require('../models');
 // const Book = require('../models/Book')
@@ -16,3 +17,8 @@ db.once('open', async () => {
     console.log("seeded")
     process.exit(0)
 })
+
+
+db.on('error', (error) => {
+  console.error('MongoDB connection error:', error);
+});

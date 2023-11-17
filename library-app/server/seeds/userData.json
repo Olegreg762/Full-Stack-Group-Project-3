@@ -7,19 +7,19 @@
     },
     {
         "username": "Tim",
-        "email": "brett@brett.com",
+        "email": "tim@brett.com",
         "password": "password",
         "isteacher": false
     },
     {
         "username": "Kevin",
-        "email": "brett@brett.com",
+        "email": "kevin@brett.com",
         "password": "password",
         "isteacher": true
     },
     {
         "username": "Greg",
-        "email": "brett@brett.com",
+        "email": "greg@brett.com",
         "password": "password",
         "isteacher": false
     }

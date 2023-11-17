@@ -24,7 +24,7 @@ const userSchema = new Schema (
         type: Boolean,
         required: true
     },
-    // checkedbooks: [bookSchema]
+    checkedbooks: [bookSchema]
     },
     {
         toJSON: {

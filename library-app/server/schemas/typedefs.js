@@ -30,7 +30,15 @@ type Query{
     books: [Book]
     libraries: [Library]
     users: [Users]
+    libraries($library: ID): Library
 }
+
+type Auth {
+    token: ID!
+    user: User
+  }
+
+
 
 `
 module.exports = typeDefs

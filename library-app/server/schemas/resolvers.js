@@ -20,6 +20,11 @@ const resolvers = {
           library: async (parent, { _id }) => {
             return Library.findById(_id)
           }
+    }, 
+    Mutation: {
+        addBook: async (parent, {authors, description, bookId, image, link, title, available}) => {
+            return await Book.create({authors, description, bookId, image, link, title, available})
+        }
     }
 }
 

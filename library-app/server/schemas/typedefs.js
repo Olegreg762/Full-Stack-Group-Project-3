@@ -1,13 +1,13 @@
 const typeDefs = `
 type Book {
     _id: ID
-    authors: String
+    authors: [String]
     description: String!
     bookId: String
     image: String
     link: String
     title: String!
-    availible: Boolean
+    available: Boolean
 }
 
 type Library {
@@ -33,6 +33,9 @@ type User {
     user(_id: ID!): User
     book(bookId: String): Book
     library(_id: ID!): Library
+}
+type Mutation{
+    addBook(authors: [String], description: String!, bookId: String, image: String, link: String, title: String!, available: Boolean ): Book
 }
 
 type Auth {

@@ -22,9 +22,19 @@ const resolvers = {
           }
     }, 
     Mutation: {
-        addBook: async (parent, {authors, description, bookId, image, link, title, available}) => {
-            return await Book.create({authors, description, bookId, image, link, title, available})
-        },
+        addBookToLibrary: async (parent, { libraryId, book }) => {
+            try {
+              const updatedLibrary = await Library.findByIdAndUpdate(
+                libraryId,
+                { $push: { books: book } },
+                { new: true }
+              );
+      
+              return updatedLibrary.populate('books');
+            } catch (error) {
+              throw new Error('Failed to add book to library');
+            }
+          },
         addUser: async (parent, { username, email, password, isteacher, checkedbooks }) => {
             return await User.create({ username, email, password, isteacher, checkedbooks })
         }, 

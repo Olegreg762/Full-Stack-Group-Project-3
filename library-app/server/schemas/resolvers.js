@@ -15,15 +15,21 @@ const resolvers = {
             return User.findById( _id ).populate('checkedbooks');
           },
           libraries: async () => {
-            return Library.find({})
+            return Library.find({}).populate('libraryowner').populate('books')
           },
           library: async (parent, { _id }) => {
-            return Library.findById(_id)
+            return Library.findById(_id).populate('libraryowner').populate('books')
           }
     }, 
     Mutation: {
         addBook: async (parent, {authors, description, bookId, image, link, title, available}) => {
             return await Book.create({authors, description, bookId, image, link, title, available})
+        },
+        addUser: async (parent, { username, email, password, isteacher, checkedbooks }) => {
+            return await User.create({ username, email, password, isteacher, checkedbooks })
+        }, 
+        addLibrary: async (parent, {libraryname, libraryowner, books}) => {
+            return await Library.create({libraryname, libraryowner, books})
         }
     }
 }

@@ -10,13 +10,6 @@ type Book {
     available: Boolean
 }
 
-type Library {
-    _id: ID
-    libraryname: String!
-    libraryowner: User!
-    books: [Book]
-}
-
 type User {
     _id: ID
     username: String!
@@ -25,6 +18,15 @@ type User {
     isteacher: Boolean
     checkedbooks: [Book]
 }
+
+type Library {
+    _id: ID
+    libraryname: String!
+    libraryowner: User!
+    books: [Book]
+}
+
+
 
  type Query {
     books: [Book]
@@ -36,6 +38,10 @@ type User {
 }
 type Mutation{
     addBook(authors: [String], description: String!, bookId: String, image: String, link: String, title: String!, available: Boolean ): Book
+
+    addUser(username: String!, email: String!, password: String!, isteacher: Boolean, checkedbooks: [ID]): User
+
+    addLibrary(libraryname: String!, libraryowner: ID!): Library
 }
 
 type Auth {

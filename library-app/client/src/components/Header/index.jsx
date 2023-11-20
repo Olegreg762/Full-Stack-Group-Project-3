@@ -8,7 +8,7 @@ const Header = () => {
           Profile
        </button>
        <button className="btn">
-          libraries
+          Libraries
        </button>
       </div>
     </header>

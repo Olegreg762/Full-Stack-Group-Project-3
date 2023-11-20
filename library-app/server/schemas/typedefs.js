@@ -36,13 +36,21 @@ input BookInput {
     link: String
     title: String!
     available: Boolean
-  }
+}
 
-  type DeleteResponse {
+input UserInput {
+    _id: ID!
+}
+
+input LibraryInput {
+    _id: ID!
+}
+
+type DeleteResponse {
     message: String!
-  }
+}
 
- type Query {
+type Query {
     books: [Book]
     libraries: [Library]
     users: [User]
@@ -65,9 +73,9 @@ type Mutation{
 
     deleteUser(_id: ID!): DeleteResponse
 
-    #updateUser(userId: ID!, user: UserInput!): User
+    updateUser(userId: ID!, user: UserInput!): User
 
-    #updateLibrary(libraryId: ID!, library: LibraryInput!): Library
+    updateLibrary(libraryId: ID!, library: LibraryInput!): Library
 }
 
 type Auth {

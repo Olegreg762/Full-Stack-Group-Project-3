@@ -95,33 +95,33 @@ const resolvers = {
       }
     },
   
-  //   updateUser: async (parent, { userId, user }) => {
-  //     try {
-  //       const updatedUser = await User.findByIdAndUpdate(
-  //         userId,
-  //         { $set: user },
-  //         { new: true }
-  //       );
+    updateUser: async (parent, { userId, user }) => {
+      try {
+        const updatedUser = await User.findByIdAndUpdate(
+          userId,
+          { $set: user },
+          { new: true }
+        );
   
-  //       return updatedUser;
-  //     } catch (error) {
-  //       throw new Error('Failed to update user');
-  //     }
-  //   },
+        return updatedUser;
+      } catch (error) {
+        throw new Error('Failed to update user');
+      }
+    },
   
-  //   updateLibrary: async (parent, { libraryId, library }) => {
-  //     try {
-  //       const updatedLibrary = await Library.findByIdAndUpdate(
-  //         libraryId,
-  //         { $set: library },
-  //         { new: true }
-  //       );
+    updateLibrary: async (parent, { libraryId, library }) => {
+      try {
+        const updatedLibrary = await Library.findByIdAndUpdate(
+          libraryId,
+          { $set: library },
+          { new: true }
+        );
   
-  //       return updatedLibrary;
-  //     } catch (error) {
-  //       throw new Error('Failed to update library');
-  //     }
-  //   },
+        return updatedLibrary;
+      } catch (error) {
+        throw new Error('Failed to update library');
+      }
+    },
    },
 
     }

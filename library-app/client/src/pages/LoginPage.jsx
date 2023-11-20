@@ -77,12 +77,6 @@ const LoginPage = (props) => {
                 </button>
               </form>
             )}
-
-            {error && (
-              <div className="">
-                {error.message}
-              </div>
-            )}
           </div>
         </div>
       </div>

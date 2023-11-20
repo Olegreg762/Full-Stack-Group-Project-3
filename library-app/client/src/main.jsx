@@ -8,7 +8,7 @@ import LibraryHub from './pages/LibraryHub.jsx';
 import LibraryPage from './pages/LibraryPage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import ProfilePage from './pages/ProfilePage.jsx'
-import RootLayout from './layouts/rootlayout.jsx';
+import ErrorPage from './pages/ErrorPage.jsx';
 
 const router = createBrowserRouter(
   [

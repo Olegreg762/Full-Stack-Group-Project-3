@@ -3,6 +3,10 @@ import { Link } from "react-router-dom"
 import auth from "../utils/auth"
 
 const HomePage = () => {
+    const logout = (event) => {
+        event.preventDefault();
+        Auth.logout();
+    };
     return (
         <h1>Home Page!</h1>,
         <div>

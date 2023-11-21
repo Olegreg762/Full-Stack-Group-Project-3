@@ -21,7 +21,7 @@ const router = createBrowserRouter(
         index: true,
       element: <LoginPage />
     }, {
-      path: '/profiles/:profileId',
+      path: '/profile',
       element: <ProfilePage />
     }, {
       path: '/libraries',

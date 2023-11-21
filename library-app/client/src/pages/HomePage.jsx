@@ -5,7 +5,7 @@ import auth from "../utils/auth"
 const HomePage = () => {
     const logout = (event) => {
         event.preventDefault();
-        Auth.logout();
+        auth.logout();
     };
     return (
         <h1>Home Page!</h1>,

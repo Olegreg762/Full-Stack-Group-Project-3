@@ -30,7 +30,6 @@ const LoginPage = (props) => {
         variables: { ...formState },
       });
 
-      debugger
       Auth.login(data.login.token);
       navigate("/profile")
     } catch (e) {

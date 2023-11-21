@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const QUERY_ALL_BOOKS = gql`
-    query getBooks() {
-        books() {
+    query getBooks {
+        books {
             _id
             title
             author
@@ -14,11 +14,23 @@ export const QUERY_ALL_BOOKS = gql`
 `;
 
 export const QUERY_LIBRARY = gql`
-    query getLibraries() {
-        libraries() {
+    query getLibraries {
+        libraries {
             _id
+            libraryowner {
+              _id
+              username
+            }
             libraryname
-            libraryowner
+            books {
+              _id
+              title
+              bookId
+              image
+              authors
+              description
+              available
+            }
         }
     }
 `;

@@ -30,3 +30,21 @@ export const ADD_USER = gql`
         }
     }
 `;
+
+export const GET_LIBRARIES = gql`
+    query {
+        libraries {
+            _id
+            libraryname
+            libraryowner{
+                _id
+                username
+            }
+            books {
+                _id
+                title
+                author
+            }
+        }
+    }
+`;

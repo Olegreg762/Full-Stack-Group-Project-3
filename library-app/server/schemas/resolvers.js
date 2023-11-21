@@ -1,4 +1,6 @@
 const { Book, Library, User} = require('../models')
+const { signToken, AuthenticationError } = require('../utils/auth');
+
 
 const resolvers = {
     Query: {
@@ -22,6 +24,27 @@ const resolvers = {
           }
     }, 
     Mutation: {
+
+      login: async (parent, { email, password }) => {
+        const user = await User.findOne({ email });
+        console.log(user);
+        if (!user) {
+          throw AuthenticationError;
+        }
+  
+        const correctPw = await user.isCorrectPassword(password);
+  
+        if (!correctPw) {
+          console.log("asdfasdf")
+          throw AuthenticationError;
+        }
+  
+        const token = signToken(user);
+  
+        return { token, user };
+        
+      },
+
         addBookToLibrary: async (parent, { libraryId, book }) => {
             try {
               const updatedLibrary = await Library.findByIdAndUpdate(

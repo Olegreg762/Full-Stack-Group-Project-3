@@ -31,19 +31,24 @@ const httpLink = createHttpLink({
     };
   });
 
-  const client = new ApolloClient({
-    // Set up our client to execute the `authLink` middleware prior to making the request to our GraphQL API
-    link: authLink.concat(httpLink),
-    cache: new InMemoryCache(),
-  });
+//   const client = new ApolloClient({
+//     // Set up our client to execute the `authLink` middleware prior to making the request to our GraphQL API
+//     link: authLink.concat(httpLink),
+//     cache: new InMemoryCache(),
+//   });
+
+    const client = new ApolloClient({
+        link: authLink.concat(httpLink),
+        cache: new InMemoryCache(),
+    });
 
 function App() {
   return (
-    <>
+    <ApolloProvider client={client}>
         <Header />
         <Outlet />
         <Footer />
-    </>
+    </ApolloProvider>
   )
   }
 

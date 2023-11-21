@@ -29,6 +29,7 @@ db.once('open', async () => {
     await cleanDB("Book", 'books');
     await cleanDB("User", 'users');
     await cleanDB("Library",'libraries')
+    // await User.create(userSeeds);
     await User.insertMany(userData)
     // await Library.insertMany(libraryData)
     createLibraryStart();

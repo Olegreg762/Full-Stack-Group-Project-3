@@ -6,6 +6,7 @@ const cleanDB = require('./cleanDB');
 const bookData = require('./bookData.json')
 const libraryData= require('./libraryData.json')
 const userData = require('./userData.json')
+const bcrypt = require('bcrypt');
 
 async function createLibraryStart() {
     try {
@@ -24,13 +25,23 @@ async function createLibraryStart() {
         console.log(error)
     }
 }
+const hashPasswords = async () => {
+     for (let i =0; i < userData.length; i++) {
+        const saltRounds = 10;
+        userData[i].password = await bcrypt.hash(userData[i].password, saltRounds)
+       } 
+       return userData
+} 
+
+
 
 db.once('open', async () => {
     await cleanDB("Book", 'books');
     await cleanDB("User", 'users');
     await cleanDB("Library",'libraries')
     // await User.create(userSeeds);
-    await User.insertMany(userData)
+    const hashedUserData= await hashPasswords()
+    await User.insertMany(hashedUserData)
     // await Library.insertMany(libraryData)
     createLibraryStart();
     await Book.insertMany(bookData)

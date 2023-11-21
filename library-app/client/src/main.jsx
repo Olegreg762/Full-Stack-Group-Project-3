@@ -9,6 +9,8 @@ import LibraryPage from './pages/LibraryPage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import ProfilePage from './pages/ProfilePage.jsx'
 import ErrorPage from './pages/ErrorPage.jsx';
+import SignupPage from './pages/SignupPage.jsx';
+import HomePage from './pages/HomePage.jsx';
 
 const router = createBrowserRouter(
   [
@@ -19,7 +21,7 @@ const router = createBrowserRouter(
     children: [
       {
         index: true,
-      element: <LoginPage />
+      element: <HomePage />
     }, {
       path: '/profile',
       element: <ProfilePage />
@@ -29,6 +31,12 @@ const router = createBrowserRouter(
     }, {
       path: '/library/:libraryId',
       element: <LibraryPage />
+    }, {
+      path: '/login',
+      element: <LoginPage />
+    }, {
+      path: '/signup',
+      element: <SignupPage />
     }
     ]
   }

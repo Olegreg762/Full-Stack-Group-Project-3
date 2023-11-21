@@ -16,17 +16,17 @@ export const ADD_USER = gql`
         $username: String!
         $email: String!
         $password: String!
+        $isteacher: Boolean!
     ) {
         addUser(
             username: $username
             email: $email
             password: $password
+            isteacher: $isteacher
         ) {
-            token
-            user {
-                _id
-                isteacher
-            }
+            username
+            email
+            isteacher
         }
     }
 `;

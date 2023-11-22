@@ -1,21 +1,20 @@
 import React from "react"
 import {useQuery} from '@apollo/client';
 import { QUERY_LIBRARY } from "../utils/queries";
+import {BOOK_CHECKOUT} from "../utils/mutations";
 
+const handleButtonClick = (bookid, available) => {
+    if(available){
+        
+        console.log(`checked out ${bookid}`)
+    } else {
+        
+        console.log(`returned ${bookid}`)
+    }
+}
 
-
-let available = true
 const LibraryHub = () => {
 
-    const handleButtonClick = (bookid, available) => {
-        if(available){
-            
-            console.log(`checked out ${bookid}`)
-        } else {
-            
-            console.log(`returned ${bookid}`)
-        }
-    }
 
     const {loading: libraryLoading,data: libraryData} =  useQuery(QUERY_LIBRARY);
     

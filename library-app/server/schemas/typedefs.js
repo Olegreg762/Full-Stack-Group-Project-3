@@ -78,6 +78,10 @@ type Mutation{
     updateUser(userId: ID!, user: UserInput!): User
 
     updateLibrary(libraryId: ID!, library: LibraryInput!): Library
+
+    checkoutBook(userId: ID!, bookId: ID!): User
+
+    returnBook(userId: ID!, bookId: ID!): User
 }
 
 type Auth {

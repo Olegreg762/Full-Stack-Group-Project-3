@@ -48,3 +48,19 @@ export const GET_LIBRARIES = gql`
         }
     }
 `;
+
+
+
+export const BOOK_CHECKOUT = gql`
+    mutation CheckoutBook($userId: ID!, $bookId: ID!) {
+        checkoutBook(userId: $userId, bookId: $bookId) {
+            _id
+            checkedbooks {
+                _id
+                title
+            }
+        }
+    }
+`;
+
+

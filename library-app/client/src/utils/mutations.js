@@ -30,3 +30,37 @@ export const ADD_USER = gql`
         }
     }
 `;
+
+export const GET_LIBRARIES = gql`
+    query {
+        libraries {
+            _id
+            libraryname
+            libraryowner{
+                _id
+                username
+            }
+            books {
+                _id
+                title
+                author
+            }
+        }
+    }
+`;
+
+
+
+export const BOOK_CHECKOUT = gql`
+    mutation CheckoutBook($userId: ID!, $bookId: ID!) {
+        checkoutBook(userId: $userId, bookId: $bookId) {
+            _id
+            checkedbooks {
+                _id
+                title
+            }
+        }
+    }
+`;
+
+

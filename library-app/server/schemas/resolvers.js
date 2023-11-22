@@ -145,6 +145,56 @@ const resolvers = {
         throw new Error('Failed to update library');
       }
     },
+
+    checkoutBook: async (_, { userId, bookId }) => {
+      try {
+        const user = await User.findById(userId);
+        const book = await Book.findById(bookId);
+
+        if (book && book.available) {
+          book.available = false;
+          await book.save();
+
+          user.checkedbooks.push({
+            _id: book._id,
+            title: book.title,
+            description: book.description,
+            bookId: book.bookId,
+            available: book.available
+          });
+
+          await user.save();
+
+          return user;
+        } else {
+          throw new Error('Book not available for checkout');
+        }
+      } catch (error) {
+        console.error(error);
+        throw new Error('Failed to checkout book');
+      }
+    },
+
+    returnBook: async (_, { bookId, userId }) => {
+      try {
+        const book = await Book.findById(bookId);
+        const user = await User.findById(userId);
+
+        book.available = true;
+        await book.save();
+        
+        const checkedBookIndex = user.checkedbooks.findIndex(checkedBook => checkedBook._id.toString() === bookId.toString());
+        user.checkedbooks.splice(checkedBookIndex, 1);
+        await user.save();
+        
+        return {
+            book,
+            user
+        };
+      } catch (error) {
+        throw new Error('Failed to Return Book')
+      }
+    }
    },
 
     }

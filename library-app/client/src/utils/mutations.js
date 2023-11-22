@@ -52,10 +52,22 @@ export const GET_LIBRARIES = gql`
 
 
 export const BOOK_CHECKOUT = gql`
-    mutation CheckoutBook($userId: ID!, $bookId: ID!) {
+    mutation checkoutBook($userId: ID!, $bookId: ID!) {
         checkoutBook(userId: $userId, bookId: $bookId) {
             _id
             checkedbooks {
+                _id
+                title
+            }
+        }
+    }
+`;
+
+export const BOOK_RETURN = gql`
+    mutation returnBook($userId: ID!, $bookId: ID!) {
+        returnBook(userId: $userId, bookId: $bookId) {
+            _id
+            returnbooks {
                 _id
                 title
             }

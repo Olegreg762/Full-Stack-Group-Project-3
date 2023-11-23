@@ -44,8 +44,8 @@ export const BOOK_CHECKOUT = gql`
 `;
 
 export const BOOK_RETURN = gql`
-    mutation checkoutBook($userId: ID!, $bookId: ID!) {
-        checkoutBook(userId: $userId, bookId: $bookId) {
+    mutation returnBook($userId: ID!, $bookId: ID!) {
+        returnBook(userId: $userId, bookId: $bookId) {
             _id
             checkedbooks {
                 _id

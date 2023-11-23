@@ -5,14 +5,40 @@ import { QUERY_LIBRARY_BOOKS } from "../utils/queries";
 import { useParams } from "react-router-dom";
 import auth from "../utils/auth"
 
-function handleButtonClick(bookId, userId, bookAvailable){
-    console.log(`
-    bookid ${bookId}
-    userid ${userId}
-    bookAvailable ${bookAvailable}
-    `)
-}
 
+const BookActions = ({bookId, userId,available}) => {
+    const [checkoutBook] = useMutation(BOOK_CHECKOUT);
+    const [returnBook] = useMutation(BOOK_RETURN);
+
+    const handleButtonClick = async () => {
+        try {
+            if(available) {
+                const {data} = await checkoutBook({
+                    variables: {
+                        userId: userId,
+                        bookId: bookId
+                    }
+                });
+                console.log('data', data)
+            } else {
+                const {data} = await returnBook({
+                    variables: {
+                        userId: userId,
+                        bookId: bookId
+                    }
+                });
+                console.log('data', data)
+            }
+        } catch (error) {
+            console.log('error')
+        }
+    }
+    return (
+        <button onClick={handleButtonClick}>
+            {available ? "Check Out" : "Return"}
+        </button>
+    )
+}
 const LibraryPage = () => {
 
     const {_id} = (auth.getProfile().data)
@@ -32,15 +58,14 @@ const LibraryPage = () => {
 
     const libraryElements = data.library.books.map((book) => (
         <div>
-            <h3> Books:</h3>
             <ul>
                 <li key={book._id}>
                     {book.title}
-                    {book.available ? (
-                        <button onClick={ () => handleButtonClick(book._id, _id, book.available)}>CheckOut</button>
-                    ) : (
-                        <button onClick={ () => handleButtonClick(book._id, _id, book.available)}>Return</button>  
-                    )}
+                    <BookActions
+                    bookId={book._id}
+                    userId={_id}
+                    available={book.available}
+                    />
                 </li>
             </ul>
         </div>
@@ -49,6 +74,7 @@ const LibraryPage = () => {
         return (
             <div>
                 <h1>Welcome to {data.library.libraryname}</h1>
+                 <h3> Books:</h3>
                 <div>{libraryElements}</div>
             </div>
         )

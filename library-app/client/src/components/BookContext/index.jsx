@@ -1,0 +1,65 @@
+import LibraryPage from '../../pages/LibraryPage';
+import { useLibraryContext } from '../../utils/GlobalState';
+import { CHECKOUT_BOOK, RETURN_BOOK, REVIEW_BOOK } from '../../utils/actions';
+
+const CheckoutBook = () => {
+    const [state, dispatch] = useLibraryContext();
+    
+    const checkoutOnClick = (e) => {
+        e.preventDefault();
+        dispatch({
+            type: CHECKOUT_BOOK,
+            available: false,
+        });
+        const checkoutResult = state.isValid
+            ? 'Checkout Successful!'
+            : 'Checkout Failed :('
+
+        alert(checkoutResult);        
+    };
+
+    return (
+        <LibraryPage>
+            <button
+                type='button'
+                id='button'
+                classname='btn'
+                onClick={checkoutOnClick}
+            >
+                Return Book
+            </button>
+        </LibraryPage>
+    );
+};
+
+const ReturnBook = () => {
+    const [state, dispatch] = useLibraryContext();
+
+    const returnOnClick = () => {
+        dispatch({
+            type: RETURN_BOOK,
+            available: true,
+        });
+        const returnResult = state.isValid 
+            ? 'Return Successful!'
+            : 'Return Failed :('
+        
+            alert(returnResult);
+    };
+    
+    return (
+        <LibraryPage>
+            <button
+                type='button'
+                id='button'
+                classname='btn'
+                onClick={returnOnClick}
+            >
+                Checkout Book
+            </button>
+        </LibraryPage>
+    );
+};
+
+export default { CheckoutBook, ReturnBook };
+

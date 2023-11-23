@@ -31,7 +31,7 @@ const router = createBrowserRouter(
       path: '/libraries',
       element: <LibraryHub />
     }, {
-      path: '/library/:libraryId',
+      path: '/libraries/:libraryId',
       element: <LibraryPage />
     }, {
       path: '/login',

@@ -16,6 +16,12 @@ export const UPDATE_BOOK = "UPDATE_BOOK"
 export const DELETE_USER = "DELETE_USER"
 export const UPDATE_USER = "UPDATE_USER"
 export const UPDATE_LIBRARY = "UPDATE_LIBRARY"
+export const QUERY_ALL_BOOKS = "QUERY_ALL_BOOKS"
+export const QUERY_LIBRARY = "QUERY_LIBRARY"
+export const QUERY_LIBRARY_BOOKS = "QUERY_LIBRARY_BOOKS"
+export const QUERY_CHECKOUT = "QUERY_CHECKOUT"
+export const QUERY_USER = "QUERY_USER"
+
 
 
 

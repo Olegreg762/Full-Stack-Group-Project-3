@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useReducer } from "react"
 import { Link } from "react-router-dom"
 import auth from "../utils/auth"
 
@@ -7,12 +7,14 @@ const HomePage = () => {
         event.preventDefault();
         auth.logout();
     };
+    const [state, dispatch] = useReducer()
+  const {email, username, _id} = (auth.getProfile().data)
     return (
         <h1>Home Page!</h1>,
         <div>
         {auth.loggedIn() ? (
           <>
-            <span>Hey there, {auth.getProfile().data.username}!</span>
+            <span>Hey there, {username}!</span>
             <button className="btn btn-lg btn-light m-2" onClick={logout}>
               Logout
             </button>

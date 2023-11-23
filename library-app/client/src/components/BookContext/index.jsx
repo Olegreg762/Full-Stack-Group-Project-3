@@ -1,6 +1,6 @@
 import LibraryPage from '../../pages/LibraryPage';
 import { useLibraryContext } from '../../utils/GlobalState';
-import { CHECKOUT_BOOK, RETURN_BOOK, REVIEW_BOOK } from '../../utils/actions';
+import { BOOK_CHECKOUT, BOOK_RETURN } from '../../utils/actions';
 
 const CheckoutBook = () => {
     const [state, dispatch] = useLibraryContext();
@@ -8,7 +8,7 @@ const CheckoutBook = () => {
     const checkoutOnClick = (e) => {
         e.preventDefault();
         dispatch({
-            type: CHECKOUT_BOOK,
+            type: BOOK_CHECKOUT,
             available: false,
         });
         const checkoutResult = state.isValid
@@ -37,7 +37,7 @@ const ReturnBook = () => {
 
     const returnOnClick = () => {
         dispatch({
-            type: RETURN_BOOK,
+            type: BOOK_RETURN,
             available: true,
         });
         const returnResult = state.isValid 

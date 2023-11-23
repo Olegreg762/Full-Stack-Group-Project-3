@@ -1,10 +1,5 @@
 import {
- CHECKOUT_BOOK,
- RETURN_BOOK,
  VIEW_BOOKS,
- REVIEW_BOOK,
- ADD_BOOK,
- DELETE_BOOK,
  ADD_LIBRARY,
  DELETE_LIBRARY,
  LOGIN,
@@ -18,7 +13,7 @@ import {
  UPDATE_USER,
  UPDATE_LIBRARY,
  QUERY_USER ,
-  QUERY_ALL_BOOKS,
+ QUERY_ALL_BOOKS,
  QUERY_LIBRARY,
  QUERY_LIBRARY_BOOKS,
  QUERY_CHECKOUT,
@@ -27,8 +22,8 @@ import {
 
 export const reducer = (state, action) => {
     switch (action.type) {
-        // Need assitance on figuring out checkout logic and process
-        case CHECKOUT_BOOK:
+
+        case BOOK_CHECKOUT:
             let newLibrary = state.library.filter((book) => {
                 return book._id !== action._id
             });
@@ -45,8 +40,8 @@ export const reducer = (state, action) => {
                 books: newLibrary,
                 checkedbooks: newCheckedBooks,
             }
-
-        case RETURN_BOOK:
+        // Need assitance on figuring out checkout logic and process
+        case BOOK_RETURN:
             return {
                 ...state,
                 books: [...state.library, action.book]
@@ -56,12 +51,10 @@ export const reducer = (state, action) => {
             return {
                 ...state,  
             }
-        
-        case REVIEW_BOOK:
 
-        case ADD_BOOK:
+        case ADD_BOOK_TO_LIBRARY:
 
-        case DELETE_BOOK:
+        case REMOVE_BOOK_FROM_LIBRARY:
 
         case ADD_LIBRARY:
 

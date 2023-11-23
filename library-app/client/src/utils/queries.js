@@ -36,16 +36,39 @@ export const QUERY_LIBRARY = gql`
 `;
 
 export const QUERY_LIBRARY_BOOKS = gql`
-    query getLibraryBooks($library: ID) {
-        libraries(library: $library) {
+    query getLibraryBooks($id: ID!) {
+        library(_id: $id) {
             _id
             libraryname
-            libraryowner
+            libraryowner{
+                username
+            }
+            books {
+                _id
+                title
+                authors
+                description
+                available
+            }
+        }
+    }
+`;
+
+
+
+export const GET_LIBRARIES = gql`
+    query {
+        libraries {
+            _id
+            libraryname
+            libraryowner{
+                _id
+                username
+            }
             books {
                 _id
                 title
                 author
-                available
             }
         }
     }

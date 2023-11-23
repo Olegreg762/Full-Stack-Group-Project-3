@@ -1,17 +1,9 @@
 import React from "react"
-import {useQuery} from '@apollo/client';
+import {useMutation, useQuery} from '@apollo/client';
 import { QUERY_LIBRARY } from "../utils/queries";
-import {BOOK_CHECKOUT} from "../utils/mutations";
+import { Link } from "react-router-dom";
+import LibraryPage from "./LibraryPage";
 
-const handleButtonClick = (bookid, available) => {
-    if(available){
-        
-        console.log(`checked out ${bookid}`)
-    } else {
-        
-        console.log(`returned ${bookid}`)
-    }
-}
 
 const LibraryHub = () => {
 
@@ -24,22 +16,9 @@ const LibraryHub = () => {
         
     const libraryElements = libraryQueryData.libraries.map((library) => (
         
-        <div key={library._id} className="library-card">
-            <h2>{library.libraryname}</h2>
-            <h3> Books:</h3>
-            <ul>
-                {library.books.map((book) => (
-                <li key={book._id}>
-                    {book.title}
-                    {book.available ? (
-                        <button onClick={ () => handleButtonClick(book._id, book.available)}>CheckOut</button>
-                    ) : (
-                        <button onClick={ () => handleButtonClick(book._id, book.available)}>Return</button>  
-                    )}
-                </li>
-                ))}
-            </ul>
-        </div>
+        <Link key={library._id} to={`/libraries/${library._id}`} component={LibraryPage} className="library-card">
+            <h2><button>{library.libraryname}</button></h2>
+        </Link>
     ))
         return (
             <div>

@@ -11,6 +11,8 @@ import ProfilePage from './pages/ProfilePage.jsx'
 import ErrorPage from './pages/ErrorPage.jsx';
 import SignupPage from './pages/SignupPage.jsx';
 import HomePage from './pages/HomePage.jsx';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
 
 const router = createBrowserRouter(
   [

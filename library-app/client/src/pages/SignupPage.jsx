@@ -78,6 +78,21 @@ const Signup = () => {
                   value={formState.password}
                   onChange={handleChange}
                 />
+               <div>
+                <button
+                  type="button"
+                  className='dropdown-toggle dropdown-toggle-split'
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  >
+                    Teacher?
+                  </button>
+
+                  <div className='dropdown-menu'>
+                    <a className='dropdown-item'> Yes </a>
+                    <a className='dropdown-item'> No </a>
+                  </div>
+                </div>
                 <button
                   className="btn btn-block btn-primary"
                   style={{ cursor: 'pointer' }}

@@ -67,7 +67,7 @@ export const BOOK_RETURN = gql`
     mutation returnBook($userId: ID!, $bookId: ID!) {
         returnBook(userId: $userId, bookId: $bookId) {
             _id
-            returnbooks {
+            checkedbooks {
                 _id
                 title
             }

@@ -32,9 +32,18 @@ export const reducer = (state, action) => {
             let newLibrary = state.library.filter((book) => {
                 return book._id !== action._id
             });
+            
+            if (book._id == action._id) {
+                let newCheckedBooks = state.library.filter((book) => {
+                    return state.checkedbooks.push(book)
+                });
+                return newCheckedBooks;
+            };
+
             return {
                 ...state,
-                books: newLibrary
+                books: newLibrary,
+                checkedbooks: newCheckedBooks,
             }
 
         case RETURN_BOOK:

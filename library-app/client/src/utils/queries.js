@@ -83,13 +83,17 @@ export const QUERY_CHECKOUT = gql`
 `;
 
 export const QUERY_USER = gql`
-    {
-        user {
+    query User($id: ID!) {
+        user(_id: $id) {
             _id
             username
             email
+            password
             isteacher
-            checkedbooks
+            checkedbooks {
+                _id
+                title
+            }
         }
     }
 `;

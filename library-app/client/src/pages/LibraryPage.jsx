@@ -1,15 +1,39 @@
 import React, { useEffect } from "react";
 import {BOOK_CHECKOUT, BOOK_RETURN} from "../utils/mutations";
 import {useMutation, useQuery} from '@apollo/client';
-import { QUERY_LIBRARY_BOOKS } from "../utils/queries";
+import { QUERY_LIBRARY_BOOKS, QUERY_USER } from "../utils/queries";
 import { useParams } from "react-router-dom";
 import auth from "../utils/auth"
 
 
-const BookActions = ({bookId, userId,available}) => {
+const BookActions = ({bookId, userId, available, refetch}) => {
     const [checkoutBook] = useMutation(BOOK_CHECKOUT);
     const [returnBook] = useMutation(BOOK_RETURN);
+    
+    const {loading: userLoading, data: userData} =  useQuery(QUERY_USER, {
+        variables: {id: userId}
+    });
 
+    
+
+    useEffect(() => {
+        if(!userLoading || userData) {
+        }
+    }, [userLoading, userData]);
+    if(userLoading) return
+
+    const checkedbooksArray = userData.user.checkedbooks
+    const isin = checkedbooksArray.map((books) => {
+        return{ 
+            checkedId:books._id
+        }
+    });
+
+    const userHasCheckedBook = isin.some(books => books.checkedId === bookId)
+
+    const checkedOutOther = !available && !userHasCheckedBook
+
+    console.log('userdata', userHasCheckedBook)
     const handleButtonClick = async () => {
         try {
             if(available) {
@@ -19,7 +43,6 @@ const BookActions = ({bookId, userId,available}) => {
                         bookId: bookId
                     }
                 });
-                console.log('data', data)
             } else {
                 const {data} = await returnBook({
                     variables: {
@@ -27,25 +50,25 @@ const BookActions = ({bookId, userId,available}) => {
                         bookId: bookId
                     }
                 });
-                console.log('data', data)
             }
         } catch (error) {
             console.log('error')
         }
     }
+    refetch()
     return (
-        <button onClick={handleButtonClick}>
-            {available ? "Check Out" : "Return"}
+        <button onClick={handleButtonClick} disabled={checkedOutOther}>
+            {checkedOutOther ? "Currently Checked Out" : available ? "Check Out" : "Return"}
         </button>
     )
 }
 const LibraryPage = () => {
 
     const {_id} = (auth.getProfile().data)
-
+    
     const {libraryId} = useParams();
 
-    const {loading, data} =  useQuery(QUERY_LIBRARY_BOOKS, {
+    const {loading, data, refetch} =  useQuery(QUERY_LIBRARY_BOOKS, {
         variables: {id: libraryId}
     });
 
@@ -53,7 +76,6 @@ const LibraryPage = () => {
         if(!loading || data) {
         }
     }, [loading, data]);
-    console.log('data', data)
     if(loading) return <p></p>;
 
     const libraryElements = data.library.books.map((book) => (
@@ -65,6 +87,7 @@ const LibraryPage = () => {
                     bookId={book._id}
                     userId={_id}
                     available={book.available}
+                    refetch={refetch}
                     />
                 </li>
             </ul>

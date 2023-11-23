@@ -57,21 +57,16 @@ export const QUERY_LIBRARY_BOOKS = gql`
 
 
 export const GET_LIBRARIES = gql`
-    query {
-        libraries {
-            _id
-            libraryname
-            libraryowner{
-                _id
-                username
-            }
-            books {
-                _id
-                title
-                author
-            }
-        }
+query Query {
+    libraries {
+      _id
+      libraryname
+      libraryowner {
+        _id
+        username
+      }
     }
+  }
 `;
 
 export const QUERY_CHECKOUT = gql`
@@ -81,6 +76,7 @@ export const QUERY_CHECKOUT = gql`
         }
     }
 `;
+
 
 export const QUERY_USER = gql`
     query User($id: ID!) {
@@ -97,3 +93,18 @@ export const QUERY_USER = gql`
         }
     }
 `;
+
+export const QUERY_ONE_USER = gql`query User($id: ID!) {
+    user(_id: $id) {
+      _id
+      checkedbooks {
+        title
+        link
+        authors
+        image
+      }
+      isteacher
+      username
+      email
+    }
+  }`

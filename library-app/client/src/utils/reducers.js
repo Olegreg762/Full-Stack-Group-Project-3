@@ -12,39 +12,44 @@ import {
  DELETE_USER,
  UPDATE_USER,
  UPDATE_LIBRARY,
- QUERY_USER ,
- QUERY_ALL_BOOKS,
- QUERY_LIBRARY,
- QUERY_LIBRARY_BOOKS,
- QUERY_CHECKOUT,
- QUERY_USER,
 } from './actions';
 
 export const reducer = (state, action) => {
     switch (action.type) {
 
         case BOOK_CHECKOUT:
-            let newLibrary = state.library.filter((book) => {
+            let newCheckedLibrary = state.library.filter((book) => {
                 return book._id !== action._id
             });
             
-            if (book._id == action._id) {
-                let newCheckedBooks = state.library.filter((book) => {
+           
+            let newCheckedBooks = state.library.filter((book) => {
+                if (book._id == action._id) {
                     return state.checkedbooks.push(book)
-                });
-                return newCheckedBooks;
-            };
+                }
+            });
 
             return {
                 ...state,
-                books: newLibrary,
+                books: newCheckedLibrary,
                 checkedbooks: newCheckedBooks,
             }
         // Need assitance on figuring out checkout logic and process
         case BOOK_RETURN:
+            let newReturnLibrary = state.library.filter((book) => {
+                if (book._id == action._id) {
+                    return state.books.push(book)
+                };
+            });
+            
+            let returnedBooks = state.checkedbooks.filter((book) => {
+                return book._id !== action._id
+            });
+            
             return {
                 ...state,
-                books: [...state.library, action.book]
+                books: newReturnLibrary,
+                checkedbooks: returnedBooks,
             }
         
         case VIEW_BOOKS:

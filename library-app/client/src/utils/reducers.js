@@ -17,6 +17,12 @@ import {
  DELETE_USER,
  UPDATE_USER,
  UPDATE_LIBRARY,
+ QUERY_USER ,
+  QUERY_ALL_BOOKS,
+ QUERY_LIBRARY,
+ QUERY_LIBRARY_BOOKS,
+ QUERY_CHECKOUT,
+ QUERY_USER,
 } from './actions';
 
 export const reducer = (state, action) => {

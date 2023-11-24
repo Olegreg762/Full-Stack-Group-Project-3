@@ -97,10 +97,13 @@ const HomePage = () => {
   if (loading) {
     return <div>Loading...</div>;
   }
+  const storedUserData = localStorage.setItem('user_data', JSON.stringify(userData));
+
 
   const libraryData = data;
   console.log(libraryData);
   console.log(userData);
+
   const userLibrary =
     libraryData && Array.isArray(libraryData)
       ? libraryData.filter((lib) => lib.libraryowner._id === _id)

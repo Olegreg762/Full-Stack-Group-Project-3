@@ -45,11 +45,11 @@ const BookAddPage = () => {
 
       
             const bookData = Rawresponse.map((book) => ({
-              bookId: book.id,
+              bookId: book.bookId,
               authors: [book.authors] || ['No author to display'],
               title: book.title,
               description: book.description,
-              image: book.imageLinks?.thumbnail || '',
+              image: book.image || '',
             }));
       
             setSearchedBooks(bookData);

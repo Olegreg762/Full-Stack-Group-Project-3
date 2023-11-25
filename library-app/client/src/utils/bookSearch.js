@@ -37,7 +37,6 @@ async function bookParse(response){
         } else {
             parsedBookData = [noData]
         }
-        
         return parsedBookData;
     } catch (error) {
         console.log(`ERROR-${error}`)

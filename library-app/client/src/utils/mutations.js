@@ -55,4 +55,24 @@ export const BOOK_RETURN = gql`
     }
 `;
 
+export const addBookToLibrary = gql`
+    mutation addBookToLibrary ($libraryId: ID!, $book: BookInput!) {
+        addBookToLibrary(libraryId: $libraryId, book: $book) {
+            _id
+            libraryname
+            libabryowner
+            books {
+                _id
+                authors
+                description
+                bookId
+                image
+                link
+                title
+                available
+            }
+        }
+    }
+`;
+
 

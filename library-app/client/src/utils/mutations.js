@@ -55,4 +55,11 @@ export const BOOK_RETURN = gql`
     }
 `;
 
+export const ADD_BOOK_DB = gql`
+    mutation addBookDB
+`;
+
+export const ADD_BOOK_LIBRARY = gql`
+    mutation addBookLibrary
+`;
 

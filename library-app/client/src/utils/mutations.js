@@ -44,8 +44,8 @@ export const BOOK_CHECKOUT = gql`
 `;
 
 export const BOOK_RETURN = gql`
-    mutation checkoutBook($userId: ID!, $bookId: ID!) {
-        checkoutBook(userId: $userId, bookId: $bookId) {
+    mutation returnBook($userId: ID!, $bookId: ID!) {
+        returnBook(userId: $userId, bookId: $bookId) {
             _id
             checkedbooks {
                 _id
@@ -55,7 +55,10 @@ export const BOOK_RETURN = gql`
     }
 `;
 
-export const addBookToLibrary = gql`
+export const ADD_BOOK_DB = gql`
+    mutation addBookDB
+`;
+export const ADD_BOOK_LIBRARY = gql`
     mutation addBookToLibrary ($libraryId: ID!, $book: BookInput!) {
         addBookToLibrary(libraryId: $libraryId, book: $book) {
             _id

@@ -55,27 +55,37 @@ export const BOOK_RETURN = gql`
     }
 `;
 
-export const ADD_BOOK_DB = gql`
-    mutation addBookDB
-`;
-export const ADD_BOOK_LIBRARY = gql`
-    mutation addBookToLibrary ($libraryId: ID!, $book: BookInput!) {
-        addBookToLibrary(libraryId: $libraryId, book: $book) {
-            _id
-            libraryname
-            libabryowner
-            books {
-                _id
-                authors
-                description
-                bookId
-                image
-                link
-                title
-                available
-            }
-        }
+ export const ADD_BOOK_DB = gql`
+mutation AddBookDB($description: String!, $title: String!, $authors: [String], $bookId: String, $image: String, $link: String, $available: Boolean) {
+    addBookDB(description: $description, title: $title, authors: $authors, bookId: $bookId, image: $image, link: $link, available: $available) {
+      _id
+      authors
+      available
+      bookId
+      description
+      image
+      link
+      title
     }
-`;
+  }
+ `;
+
+ export const ADD_BOOK_LIBRARY = gql`
+ mutation AddBookToLibrary($libraryId: ID!, $bookId: ID!) {
+    addBookToLibrary(libraryId: $libraryId, bookId: $bookId) {
+      libraryname
+      books {
+        _id
+        authors
+        available
+        bookId
+        description
+        image
+        link
+        title
+      }
+    }
+  }
+ `;
 
 

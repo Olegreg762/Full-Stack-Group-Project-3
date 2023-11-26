@@ -46,39 +46,29 @@ import { Link, useNavigate } from "react-router-dom";
 import auth from "../utils/auth";
 
 const HomePage = () => {
-  const navigate = useNavigate();
+
 
   const logout = (event) => {
     event.preventDefault();
     auth.logout();
   };
 
-  const { username } = auth.getProfile().data;
-
-  useEffect(() => {
-    if (!auth.loggedIn() || !auth.getToken()) {
-      // Redirect to the login page if the user is not logged in or if the token is invalid
-      navigate("/login");
-    }
-  }, [navigate]);
-
 
   return (
     <div>
-      <h1>Home Page!</h1>
-      {auth.loggedIn() || auth.getToken() ? (
+      <h1>Welcome to CLEO! </h1>
+       {auth.loggedIn() || auth.getToken() ? (
         <>
-          <span>Hey there, {username}! </span>
           <button className="btn btn-lg btn-light m-2" onClick={logout}>
             Logout
           </button>
         </>
       ) : (
         <>
-          <Link className="btn btn-block btn-primary" to="/login">
+          <Link className="btn btn-block btn-primary m-3" to="/login">
             Login
           </Link>
-          <Link className="btn btn-block btn-primary" to="/signup">
+          <Link className="btn btn-block btn-primary m-3" to="/signup">
             Signup
           </Link>
         </>

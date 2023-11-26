@@ -55,23 +55,18 @@ const HomePage = () => {
 
   const { username } = auth.getProfile().data;
 
-  // useEffect(() => {
-  //   if (!auth.loggedIn() || !auth.getToken()) {
-  //     // Redirect to the login page if the user is not logged in or if the token is invalid
-  //     navigate("/login");
-  //   }
-  // }, [navigate]);
-
-  useEffect(()=>{
-    if(!localStorage.getItem("token")){
+  useEffect(() => {
+    if (!auth.loggedIn() || !auth.getToken()) {
+      // Redirect to the login page if the user is not logged in or if the token is invalid
       navigate("/login");
     }
-    },[]);
+  }, [navigate]);
+
 
   return (
     <div>
       <h1>Home Page!</h1>
-      {auth.loggedIn() ? (
+      {auth.loggedIn() || auth.getToken() ? (
         <>
           <span>Hey there, {username}! </span>
           <button className="btn btn-lg btn-light m-2" onClick={logout}>

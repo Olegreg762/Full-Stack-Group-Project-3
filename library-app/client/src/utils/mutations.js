@@ -71,20 +71,20 @@ mutation AddBookDB($description: String!, $title: String!, $authors: [String], $
  `;
 
  export const ADD_BOOK_LIBRARY = gql`
-
-  addBookToLibrary(libraryId: $libraryId, bookId: $bookId) {
-    libraryname
-    books {
-      _id
-      authors
-      available
-      bookId
-      description
-      image
-      link
-      title
+ mutation AddBookToLibrary($libraryId: ID!, $bookId: ID!) {
+    addBookToLibrary(libraryId: $libraryId, bookId: $bookId) {
+      libraryname
+      books {
+        _id
+        authors
+        available
+        bookId
+        description
+        image
+        link
+        title
+      }
     }
   }
-}
  `;
 

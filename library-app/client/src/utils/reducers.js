@@ -62,7 +62,14 @@ export const reducer = (state, action) => {
         case REMOVE_BOOK_FROM_LIBRARY:
 
         case ADD_LIBRARY:
+            return {
+                
+            }
 
         case DELETE_LIBRARY:
+            return {
+                ...state,
+                libraries: state.libraries.filter((library) => library.id !== action.payload)
+            }
     }
 }

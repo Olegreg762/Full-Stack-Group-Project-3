@@ -24,6 +24,9 @@ const httpLink = createHttpLink({
     // get the authentication token from local storage if it exists
     const token = localStorage.getItem('id_token');
     // return the headers to the context so httpLink can read them
+
+    //Add if statement to navigate to the login page, and have a sign up button if token is not found
+
     return {
       headers: {
         ...headers,

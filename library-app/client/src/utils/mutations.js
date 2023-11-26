@@ -44,8 +44,8 @@ export const BOOK_CHECKOUT = gql`
 `;
 
 export const BOOK_RETURN = gql`
-    mutation checkoutBook($userId: ID!, $bookId: ID!) {
-        checkoutBook(userId: $userId, bookId: $bookId) {
+    mutation returnBook($userId: ID!, $bookId: ID!) {
+        returnBook(userId: $userId, bookId: $bookId) {
             _id
             checkedbooks {
                 _id
@@ -54,5 +54,38 @@ export const BOOK_RETURN = gql`
         }
     }
 `;
+
+ export const ADD_BOOK_DB = gql`
+mutation AddBookDB($description: String!, $title: String!, $authors: [String], $bookId: String, $image: String, $link: String, $available: Boolean) {
+    addBookDB(description: $description, title: $title, authors: $authors, bookId: $bookId, image: $image, link: $link, available: $available) {
+      _id
+      authors
+      available
+      bookId
+      description
+      image
+      link
+      title
+    }
+  }
+ `;
+
+ export const ADD_BOOK_LIBRARY = gql`
+ mutation AddBookToLibrary($libraryId: ID!, $bookId: ID!) {
+    addBookToLibrary(libraryId: $libraryId, bookId: $bookId) {
+      libraryname
+      books {
+        _id
+        authors
+        available
+        bookId
+        description
+        image
+        link
+        title
+      }
+    }
+  }
+ `;
 
 

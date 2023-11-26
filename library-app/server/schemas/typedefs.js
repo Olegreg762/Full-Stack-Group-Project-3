@@ -61,7 +61,9 @@ type Query {
 type Mutation{
     login(email: String!, password: String): Auth
 
-    addBookToLibrary(libraryId: ID!, book: BookInput!): Library
+    addBookDB(authors: [String], description: String!, bookId: String, image: String, link: String, title: String!, available: Boolean): Book
+
+    addBookToLibrary(libraryId: ID!, bookId: ID!): Library
 
     addUser(username: String!, email: String!, password: String!, isteacher: Boolean, checkedbooks: [ID]): User
 

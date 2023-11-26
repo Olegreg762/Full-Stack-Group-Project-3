@@ -45,11 +45,16 @@ const resolvers = {
         
       },
 
-        addBookToLibrary: async (parent, { libraryId, book }) => {
+        addBookToLibrary: async (parent, { libraryId, bookId }) => {
             try {
               const updatedLibrary = await Library.findByIdAndUpdate(
                 libraryId,
-                { $push: { books: book } },
+                { 
+                  $addToSet:{books:  { 
+                 _id: bookId
+                } 
+              }
+              },
                 { new: true }
               );
       
@@ -77,6 +82,14 @@ const resolvers = {
         return updatedLibrary;
       } catch (error) {
         throw new Error('Failed to remove book from library');
+      }
+    },
+
+    addBookDB: async (parent, {_, authors, bookId, description, image, title, available}) => {
+      try {
+        return await Book.create({authors, bookId, description, image, title, available})
+      } catch (error) {
+        console.log("Book Add Error", error)
       }
     },
   

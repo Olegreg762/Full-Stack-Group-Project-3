@@ -45,18 +45,15 @@ const resolvers = {
         
       },
 
-        addBookToLibrary: async (parent, { libraryId, bookId, authors, title, description, image }) => {
+        addBookToLibrary: async (parent, { libraryId, bookId }) => {
             try {
               const updatedLibrary = await Library.findByIdAndUpdate(
                 libraryId,
                 { 
-                  $addToSet: { 
-                  bookId: bookId,
-                  authors: authors,
-                  title: title,
-                  description: description,
-                  image: image
+                  $addToSet:{books:  { 
+                 _id: bookId
                 } 
+              }
               },
                 { new: true }
               );
@@ -88,9 +85,9 @@ const resolvers = {
       }
     },
 
-    addBookDB: async (_, authors, bookId, description, image, title) => {
+    addBookDB: async (parent, {_, authors, bookId, description, image, title, available}) => {
       try {
-        return await Book.create({authors, bookId, description, image, title})
+        return await Book.create({authors, bookId, description, image, title, available})
       } catch (error) {
         console.log("Book Add Error", error)
       }

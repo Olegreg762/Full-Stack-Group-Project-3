@@ -48,12 +48,13 @@ const httpLink = createHttpLink({
 
 function App() {
   return (
+    
     <ApolloProvider client={client}>
         <Header />
         <Outlet />
         <Footer />
     </ApolloProvider>
-  )
+    )
   }
 
 export default App

@@ -11,6 +11,7 @@ const Signup = () => {
     username: '',
     email: '',
     password: '',
+    isteacher: ''
   });
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
@@ -27,11 +28,18 @@ const Signup = () => {
     event.preventDefault();
     console.log(formState);
 
+
+    let isteacher = false
+
+    if (formState.isteacher === "true"){
+      isteacher = true
+    }
+
     try {
       const { data } = await addUser({
         variables: { 
           ...formState,
-          isteacher: false
+          isteacher
         },
       });
 
@@ -79,19 +87,14 @@ const Signup = () => {
                   onChange={handleChange}
                 />
                <div>
-                <button
-                  type="button"
-                  className='dropdown-toggle dropdown-toggle-split'
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  >
-                    Teacher?
-                  </button>
-
-                  <div className='dropdown-menu'>
-                    <a className='dropdown-item'> Yes </a>
-                    <a className='dropdown-item'> No </a>
-                  </div>
+               <select class="form-select" aria-label="Default select example"                   
+               value={formState.isteacher}
+                onChange={handleChange}
+                name= "isteacher">
+              <option selected>Are You A Teacher?</option>
+              <option value={true}>Yes</option>
+              <option value={false}>No</option>
+              </select>
                 </div>
                 <button
                   className="btn btn-block btn-primary"

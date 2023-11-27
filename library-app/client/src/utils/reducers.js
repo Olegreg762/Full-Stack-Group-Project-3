@@ -68,14 +68,18 @@ export const reducer = (state, action) => {
             }
         
             case UPDATE_LIBRARY:
-                let updatedLibrary = state.libraries.filter((library) => {
-                    return library._id == action.id
-                });
-
-                
-            
-                return {
-                    ...state,
+               return state.map((library) => {
+                if (library._id == action.payload._id) {
+                    return {
+                        ...state,
+                        libraries: action.payload
+                    }
+                } else {
+                    return {
+                        ...state,
+                        libraries: library
+                    }
                 }
+                });
     }
 }

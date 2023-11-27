@@ -137,11 +137,12 @@ const resolvers = {
           userId,
           { $set: user },
           { new: true }
-        );
+        ).populate('checkedbooks').populate("readBooks");
   
         return updatedUser;
       } catch (error) {
-        throw new Error('Failed to update user');
+        // throw new Error('Failed to update user')
+        console.error(error);
       }
     },
   

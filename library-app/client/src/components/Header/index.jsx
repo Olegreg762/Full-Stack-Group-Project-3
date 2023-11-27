@@ -20,7 +20,7 @@ const Header = () => {
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <Link to='/'><a class="nav-link active" aria-current="page">Home</a></Link>
+        <Link to='/' class="nav-link active" aria-current="page">Home</Link>
       </li>
       <li className="nav-item">
         <Link to='profile' className="nav-link"> Profile </Link>

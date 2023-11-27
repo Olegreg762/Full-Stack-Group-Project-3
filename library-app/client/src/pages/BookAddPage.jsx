@@ -27,7 +27,7 @@ const BookAddPage = () => {
         const userId = (auth.getProfile().data._id)
     
     
-        const {loading, data} =  useQuery(QUERY_LIBRARY, {});
+        const {loading, data, refetch} =  useQuery(QUERY_LIBRARY, {});
     
         useEffect(() => {
             if(!loading || data) {
@@ -36,13 +36,9 @@ const BookAddPage = () => {
         if(loading) return <p></p>;
 
 
-        const UserlibraryData = data.libraries.find((library) => library.libraryowner._id === userId)
-        console.log(UserlibraryData.libraryowner._id)
-
-
-        // useEffect(() => {
-        //   return () => saveBookIds(savedBookIds);
-        // });
+        const UserlibraryData = data.libraries.find((library) => library.libraryowner._id === userId);
+        
+        const libraryid = UserlibraryData._id;
 
         const savedBookIds = UserlibraryData.books.map((libraryBooks) => libraryBooks.bookId)
     
@@ -81,7 +77,6 @@ const BookAddPage = () => {
         const handleSaveBook = async (bookId) => {
             
           const bookToSave = searchedBooks.find((book) => book.bookId === bookId);
-          console.log(`${JSON.stringify(bookToSave)}`)
           const token = auth.loggedIn() ? auth.getToken() : null;
       
           if (!token) {
@@ -89,7 +84,7 @@ const BookAddPage = () => {
           }
       
           try {
-            const response = await addBookToDB({
+            const responseDBadd = await addBookToDB({
                 variables: {
                     authors: bookToSave.authors.join(', '),
                     description: bookToSave.description,
@@ -99,12 +94,20 @@ const BookAddPage = () => {
                     available: true
                 }
             });
-      
-            if (!response) {
-              throw new Error('something went wrong!');
+
+            const book_id = responseDBadd.data.addBookDB._id
+
+            const responseLibraryAdd = await addBookToLibrary({
+                variables: {
+                    libraryId: libraryid,
+                    bookId: book_id
+                }
+            });
+            refetch()
+            if (!responseDBadd || !responseLibraryAdd) {
+              throw new Error(`something went wrong!, DBadd ${responseDBadd}, libraryAdd ${responseLibraryAdd}`);
             }
-      
-            // setSavedBookIds([...savedBookIds, bookToSave.bookId]);
+       
           } catch (err) {
             console.error(err);
           }
@@ -159,7 +162,7 @@ const BookAddPage = () => {
                           <Button
                             disabled={savedBookIds?.some((savedBookId) => savedBookId === book.bookId)}
                             className='btn-block btn-info'
-                            onClick={() => handleSaveBook(book.bookId)}>
+                            onClick={() => handleSaveBook(book.bookId, refetch)}>
                             {savedBookIds?.some((savedBookId) => savedBookId === book.bookId)
                               ? 'This book has already been saved!'
                               : 'Save this Book!'}

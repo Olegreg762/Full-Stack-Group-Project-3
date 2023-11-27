@@ -50,18 +50,18 @@ const Signup = () => {
   };
 
   return (
-    <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-lg-10">
-        <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Sign Up</h4>
-          <div className="card-body">
+    <main className="flex-row justify-center">
+      <div className="">
+        <div className="bg-dark">
+          <h4 className="bg-dark text-light p-2 text-center">Sign Up</h4>
+          <div className="bg-dark">
             {data ? (
               <p>
                 Success! You may now head{' '}
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
-              <form onSubmit={handleFormSubmit}>
+              <form onSubmit={handleFormSubmit} className='bg-dark text-center'>
                 <input
                   className="form-input"
                   placeholder="Your username"
@@ -86,8 +86,7 @@ const Signup = () => {
                   value={formState.password}
                   onChange={handleChange}
                 />
-               <div>
-               <select class="form-select" aria-label="Default select example"                   
+                 <select class="form-select" aria-label="Default select example"                   
                value={formState.isteacher}
                 onChange={handleChange}
                 name= "isteacher">
@@ -95,9 +94,8 @@ const Signup = () => {
               <option value={true}>Yes</option>
               <option value={false}>No</option>
               </select>
-                </div>
                 <button
-                  className="btn btn-block btn-primary"
+                  className="btn btn-lg btn-block btn-dark"
                   style={{ cursor: 'pointer' }}
                   type="submit"
                 >

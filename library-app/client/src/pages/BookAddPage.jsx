@@ -1,31 +1,47 @@
 import React from "react"
 import { useState, useEffect } from 'react';
-import {
-  Container,
-  Col,
-  Form,
-  Button,
-  Card,
-  Row
-} from 'react-bootstrap';
+// import {
+//   Container,
+//   Col,
+//   Form,
+//   Button,
+//   Card,
+//   Row
+// } from 'react-bootstrap';
 
-import Auth from '../utils/auth';
+import auth from '../utils/auth';
 import {useMutation, useQuery} from '@apollo/client';
-import { QUERY_LIBRARY } from "../utils/queries";
-import { BOOK_CHECKOUT } from "../utils/mutations";
+import { QUERY_LIBRARY, QUERY_LIBRARY_BOOKS } from "../utils/queries";
+import { ADD_BOOK_DB, ADD_BOOK_LIBRARY } from "../utils/mutations";
 import { Link } from "react-router-dom";
 import { bookSearchById, bookSearchByName } from "../utils/bookSearch";
 
 const BookAddPage = () => {
-
+        
         const [searchedBooks, setSearchedBooks] = useState([]);
         const [searchInput, setSearchInput] = useState('');
       
-        // const [savedBookIds, setSavedBookIds] = useMutation(BOOK_CHECKOUT)
-      
-        // useEffect(() => {
-        //   return () => saveBookIds(savedBookIds);
-        // });
+        const [addBookToDB] = useMutation(ADD_BOOK_DB);
+        const [addBookToLibrary] = useMutation(ADD_BOOK_LIBRARY);
+
+        const userId = (auth.getProfile().data._id)
+    
+    
+        const {loading, data, refetch} =  useQuery(QUERY_LIBRARY, {});
+    
+        useEffect(() => {
+            if(!loading || data) {
+            }
+        }, [loading, data]);
+        if(loading) return <p></p>;
+
+
+        const UserlibraryData = data.libraries.find((library) => library.libraryowner._id === userId);
+        
+        const libraryid = UserlibraryData._id;
+
+        const savedBookIds = UserlibraryData.books.map((libraryBooks) => libraryBooks.bookId)
+    
       
         const handleFormSubmit = async (event) => {
           event.preventDefault();
@@ -36,7 +52,6 @@ const BookAddPage = () => {
       
           try {
             const response = await bookSearchByName(searchInput);
-            console.log(response)
             if (!response) {
               throw new Error('something went wrong!');
             }
@@ -60,22 +75,39 @@ const BookAddPage = () => {
         };
       
         const handleSaveBook = async (bookId) => {
+            
           const bookToSave = searchedBooks.find((book) => book.bookId === bookId);
-      
-          const token = Auth.loggedIn() ? Auth.getToken() : null;
+          const token = auth.loggedIn() ? auth.getToken() : null;
       
           if (!token) {
             return false;
           }
       
           try {
-            const response = await saveBook(bookToSave, token);
-      
-            if (!response.ok) {
-              throw new Error('something went wrong!');
+            const responseDBadd = await addBookToDB({
+                variables: {
+                    authors: bookToSave.authors.join(', '),
+                    description: bookToSave.description,
+                    title: bookToSave.title,
+                    bookId: bookToSave.bookId,
+                    image: bookToSave.image,
+                    available: true
+                }
+            });
+
+            const book_id = responseDBadd.data.addBookDB._id
+
+            const responseLibraryAdd = await addBookToLibrary({
+                variables: {
+                    libraryId: libraryid,
+                    bookId: book_id
+                }
+            });
+            refetch()
+            if (!responseDBadd || !responseLibraryAdd) {
+              throw new Error(`something went wrong!, DBadd ${responseDBadd}, libraryAdd ${responseLibraryAdd}`);
             }
-      
-            // setSavedBookIds([...savedBookIds, bookToSave.bookId]);
+       
           } catch (err) {
             console.error(err);
           }
@@ -126,16 +158,16 @@ const BookAddPage = () => {
                         <Card.Title>{book.title}</Card.Title>
                         <p className='small'>Authors: {book.authors}</p>
                         <Card.Text>{book.description}</Card.Text>
-                        {/* {Auth.loggedIn() && (
+                        {auth.loggedIn() && (
                           <Button
                             disabled={savedBookIds?.some((savedBookId) => savedBookId === book.bookId)}
                             className='btn-block btn-info'
-                            onClick={() => handleSaveBook(book.bookId)}>
+                            onClick={() => handleSaveBook(book.bookId, refetch)}>
                             {savedBookIds?.some((savedBookId) => savedBookId === book.bookId)
                               ? 'This book has already been saved!'
                               : 'Save this Book!'}
                           </Button>
-                        )} */}
+                        )}
                       </Card.Body>
                     </Card>
                   </Col>

@@ -17,6 +17,7 @@ type User {
     password: String!
     isteacher: Boolean
     checkedbooks: [Book]
+    readBooks: [Book]
 }
 
 type Library {
@@ -39,7 +40,13 @@ input BookInput {
 }
 
 input UserInput {
-    _id: ID!
+    _id: ID
+    username: String
+    email: String
+    password: String
+    isteacher: Boolean
+    checkedbooks: [ID]
+    readBooks: [ID]
 }
 
 input LibraryInput {

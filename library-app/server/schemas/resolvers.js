@@ -27,7 +27,6 @@ const resolvers = {
 
       login: async (parent, { email, password }) => {
         const user = await User.findOne({ email });
-        console.log(user);
         if (!user) {
           throw AuthenticationError;
         }
@@ -137,11 +136,12 @@ const resolvers = {
           userId,
           { $set: user },
           { new: true }
-        );
+        ).populate('checkedbooks').populate("readBooks");
   
         return updatedUser;
       } catch (error) {
-        throw new Error('Failed to update user');
+        // throw new Error('Failed to update user')
+        console.error(error);
       }
     },
   

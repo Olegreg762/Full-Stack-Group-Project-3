@@ -56,21 +56,21 @@ const HomePage = () => {
 
   return (
     <div>
-      <h1>Welcome to CLEO! </h1>
+      <h1 className="bg-dark text-white p-5 text-center m-0">Welcome to CLEO! </h1>
        {auth.loggedIn() || auth.getToken() ? (
         <>
-          <button className="btn btn-lg btn-light m-2" onClick={logout}>
-            Logout
-          </button>
+          
         </>
       ) : (
         <>
-          <Link className="btn btn-block btn-primary m-3" to="/login">
+        <div className="bg-dark text-center">
+          <Link className="btn btn-lg btn-block btn-dark m-3" to="/login">
             Login
           </Link>
-          <Link className="btn btn-block btn-primary m-3" to="/signup">
+          <Link className="btn btn-lg btn-block btn-dark m-3" to="/signup">
             Signup
           </Link>
+          </div>
         </>
       )}
     </div>

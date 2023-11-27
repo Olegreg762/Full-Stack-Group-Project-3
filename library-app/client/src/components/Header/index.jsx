@@ -10,9 +10,9 @@ const Header = () => {
   };
   return (
 
-<nav className="navbar navbar-expand-lg bg-body-tertiary">
+<nav className="navbar navbar-dark navbar-expand-lg bg-dark">
 <div className="container-fluid">
-  <a className="navbar-brand">CLEO</a>
+  <a className="navbar-brand text-white">C.L.E.O.</a>
   <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span className="navbar-toggler-icon"></span>
   </button>
@@ -20,17 +20,17 @@ const Header = () => {
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <Link to='/'><a class="nav-link active" aria-current="page">Home</a></Link>
+        <Link to='/' class="nav-link active text-white" aria-current="page">Home</Link>
       </li>
       <li className="nav-item">
-        <Link to='profile' className="nav-link"> Profile </Link>
+        <Link to='profile' className="nav-link text-white"> Profile </Link>
       </li>
       <li className="nav-item">
-       <Link to='/libraries' className="nav-link">Libraries</Link>
+       <Link to='/libraries' className="nav-link text-white">Libraries</Link>
       </li>
     </ul>
     <>
-          <button className="btn btn-m btn-light m-2 float-end" onClick={logout}>
+          <button className="btn btn-m btn-dark m-4 float-end" onClick={logout}>
             Logout
           </button>
         </>

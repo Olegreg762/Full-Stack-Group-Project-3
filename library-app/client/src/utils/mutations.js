@@ -89,3 +89,22 @@ mutation AddBookDB($description: String!, $title: String!, $authors: [String], $
  `;
 
 
+export const UPDATE_USER = gql`
+mutation UpdateUser($userId: ID!, $user: UserInput!) {
+    updateUser(userId: $userId, user: $user) {
+      _id
+      checkedbooks {
+        title
+        _id
+        authors
+        bookId
+        description
+        image
+        link
+      }
+      email
+      isteacher
+      username
+    }
+  }
+`

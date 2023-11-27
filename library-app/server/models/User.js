@@ -24,7 +24,14 @@ const userSchema = new Schema (
         type: Boolean,
         required: true
     },
-    checkedbooks: [bookSchema]
+    checkedbooks: {
+        type: [Schema.Types.ObjectId],
+        ref: 'Book'
+    },
+    readBooks: {
+        type: [Schema.Types.ObjectId],
+        ref: 'Book'
+    },
     },
     {
         toJSON: {
@@ -47,6 +54,9 @@ userSchema.methods.isCorrectPassword = async function (password) {
 
 userSchema.virtual('bookCount').get(function () {
     return this.checkedbooks.length;
+});
+userSchema.virtual('booksRead').get(function () {
+    return this.readBooks.length;
 });
 
 const User = model('User', userSchema);

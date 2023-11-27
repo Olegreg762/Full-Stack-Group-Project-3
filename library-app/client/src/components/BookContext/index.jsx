@@ -23,7 +23,7 @@ const CheckoutBook = () => {
             <button
                 type='button'
                 id='button'
-                classname='btn'
+                className='btn'
                 onClick={checkoutOnClick}
             >
                 Return Book
@@ -52,7 +52,7 @@ const ReturnBook = () => {
             <button
                 type='button'
                 id='button'
-                classname='btn'
+                className='btn'
                 onClick={returnOnClick}
             >
                 Checkout Book

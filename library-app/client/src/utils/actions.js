@@ -1,5 +1,3 @@
-export const CHECKOUT_BOOK = "CHECKOUT_BOOK";
-export const RETURN_BOOK = "RETURN_BOOK";
 export const VIEW_BOOKS = "VIEW_BOOKS";
 export const REVIEW_BOOK = "REVIEW_BOOK";
 export const ADD_BOOK = "ADD_BOOK";

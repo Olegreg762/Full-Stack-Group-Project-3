@@ -51,11 +51,6 @@ export const reducer = (state, action) => {
                 books: newReturnLibrary,
                 checkedbooks: returnedBooks,
             }
-        
-        case VIEW_BOOKS:
-            return {
-                ...state,  
-            }
 
         case ADD_BOOK_TO_LIBRARY:
 
@@ -71,5 +66,20 @@ export const reducer = (state, action) => {
                 ...state,
                 libraries: state.libraries.filter((library) => library.id !== action.payload)
             }
+        
+            case UPDATE_LIBRARY:
+               return state.map((library) => {
+                if (library._id == action.payload._id) {
+                    return {
+                        ...state,
+                        libraries: action.payload
+                    }
+                } else {
+                    return {
+                        ...state,
+                        libraries: library
+                    }
+                }
+                });
     }
 }

@@ -21,8 +21,8 @@ const BookAddPage = () => {
         const [searchedBooks, setSearchedBooks] = useState([]);
         const [searchInput, setSearchInput] = useState('');
       
-        const addBookToDB = useMutation(ADD_BOOK_DB);
-        const addBookToLibrary = useMutation(ADD_BOOK_LIBRARY);
+        const [addBookToDB] = useMutation(ADD_BOOK_DB);
+        const [addBookToLibrary] = useMutation(ADD_BOOK_LIBRARY);
 
         const userId = (auth.getProfile().data._id)
     
@@ -36,17 +36,16 @@ const BookAddPage = () => {
         if(loading) return <p></p>;
 
 
-        const libraryId = data.libraries.find((library) => library.libraryowner._id === userId)
-        console.log(libraryId.libraryowner._id)
+        const UserlibraryData = data.libraries.find((library) => library.libraryowner._id === userId)
+        console.log(UserlibraryData.libraryowner._id)
 
 
         // useEffect(() => {
         //   return () => saveBookIds(savedBookIds);
         // });
 
-        const savedBookIds = useQuery(QUERY_LIBRARY_BOOKS, {
-            variables: {id: libraryId}
-        })
+        const savedBookIds = UserlibraryData.books.map((libraryBooks) => libraryBooks.bookId)
+    
       
         const handleFormSubmit = async (event) => {
           event.preventDefault();
@@ -57,7 +56,6 @@ const BookAddPage = () => {
       
           try {
             const response = await bookSearchByName(searchInput);
-            console.log(response)
             if (!response) {
               throw new Error('something went wrong!');
             }
@@ -81,8 +79,9 @@ const BookAddPage = () => {
         };
       
         const handleSaveBook = async (bookId) => {
+            
           const bookToSave = searchedBooks.find((book) => book.bookId === bookId);
-      
+          console.log(`${JSON.stringify(bookToSave)}`)
           const token = auth.loggedIn() ? auth.getToken() : null;
       
           if (!token) {
@@ -90,13 +89,22 @@ const BookAddPage = () => {
           }
       
           try {
-            const response = await addBookToDB(bookToSave, token);
+            const response = await addBookToDB({
+                variables: {
+                    authors: bookToSave.authors.join(', '),
+                    description: bookToSave.description,
+                    title: bookToSave.title,
+                    bookId: bookToSave.bookId,
+                    image: bookToSave.image,
+                    available: true
+                }
+            });
       
-            if (!response.ok) {
+            if (!response) {
               throw new Error('something went wrong!');
             }
       
-            setSavedBookIds([...savedBookIds, bookToSave.bookId]);
+            // setSavedBookIds([...savedBookIds, bookToSave.bookId]);
           } catch (err) {
             console.error(err);
           }
@@ -149,7 +157,7 @@ const BookAddPage = () => {
                         <Card.Text>{book.description}</Card.Text>
                         {auth.loggedIn() && (
                           <Button
-                            // disabled={savedBookIds?.some((savedBookId) => savedBookId === book.bookId)}
+                            disabled={savedBookIds?.some((savedBookId) => savedBookId === book.bookId)}
                             className='btn-block btn-info'
                             onClick={() => handleSaveBook(book.bookId)}>
                             {savedBookIds?.some((savedBookId) => savedBookId === book.bookId)

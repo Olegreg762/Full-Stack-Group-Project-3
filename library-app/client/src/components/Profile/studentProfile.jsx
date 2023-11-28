@@ -25,7 +25,7 @@ const StudentProfile = ({user}) => {
                     {/*Pulls completed book from the database and uses the google api to get info, plus pulls comments */}
                     { user?.checkedbooks.length ?
                         user?.checkedbooks?.map((book) => (        
-                        <div>
+                        <div className="text-center text-white">
                             <ul>
                                 <li key={book._id}>
                                     <p>{book.title}</p>

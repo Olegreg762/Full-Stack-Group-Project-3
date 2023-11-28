@@ -30,6 +30,23 @@ const TeacherProfile = ({user}) => {
         </Link>) : <h2 className="text-center text-white">No libraries created yet! </h2>}
 
                 </div>
+                <div className="profile-books border border-4 border-secondary p-5">
+                    <h2 className="text-center text-white">My Checked Out Books</h2>
+                    {/*Pulls completed book from the database and uses the google api to get info, plus pulls comments */}
+                    { user?.checkedbooks.length ?
+                        user?.checkedbooks?.map((book) => (        
+                        <div>
+                            <ul>
+                                <li key={book._id}>
+                                    <p>{book.title}</p>
+                                    <p>{book.authors}</p>
+                                </li>
+                            </ul>
+                        </div>)) :
+                        <p className="text-center text-white">No Books Checked Out Yet!</p>
+                    }
+
+                </div>
                 </div>
             </div>
        

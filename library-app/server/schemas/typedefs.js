@@ -91,6 +91,8 @@ type Mutation{
     checkoutBook(userId: ID!, bookId: ID!): User
 
     returnBook(userId: ID!, bookId: ID!): User
+
+    createUserandLibrary(username: String!, email: String!, password: String!, isteacher: Boolean!):User 
 }
 
 type Auth {

@@ -9,6 +9,7 @@ const UpdateLibrary = () => {
         e.preventDefault();
         dispatch({
             type: UPDATE_LIBRARY,
+            payload: e,
         });
 
         const updateLibraryResults = state.isValid
@@ -23,4 +24,8 @@ const UpdateLibrary = () => {
 
         </LibraryChoicePage>
     )
+}
+
+const AddLibrary = () => {
+
 }

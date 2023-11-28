@@ -45,11 +45,18 @@ export const reducer = (state, action) => {
             let returnedBooks = state.checkedbooks.filter((book) => {
                 return book._id !== action._id
             });
+
+            let newReadBooks = state.library.filter((book) => {
+                if (book._id == action.id) {
+                    return state.user.readBooks.push(book)
+                }
+            });
             
             return {
                 ...state,
                 books: newReturnLibrary,
                 checkedbooks: returnedBooks,
+                readBooks: newReadBooks
             }
 
         case ADD_BOOK_TO_LIBRARY:
@@ -58,8 +65,12 @@ export const reducer = (state, action) => {
 
         case ADD_LIBRARY:
             return {
-                
+                ...state,
+                libraries: action.payload[0],
+                books: action.payload[1]
             }
+                
+            
 
         case DELETE_LIBRARY:
             return {
@@ -67,8 +78,8 @@ export const reducer = (state, action) => {
                 libraries: state.libraries.filter((library) => library.id !== action.payload)
             }
         
-            case UPDATE_LIBRARY:
-               return state.map((library) => {
+        case UPDATE_LIBRARY:
+            return state.map((library) => {
                 if (library._id == action.payload._id) {
                     return {
                         ...state,
@@ -80,6 +91,6 @@ export const reducer = (state, action) => {
                         libraries: library
                     }
                 }
-                });
+            });
     }
 }

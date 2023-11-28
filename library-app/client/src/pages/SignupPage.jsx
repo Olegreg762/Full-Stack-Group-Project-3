@@ -43,20 +43,25 @@ const Signup = () => {
         },
       });
 
+
+
       Auth.login(data);
       const userId = (Auth.getProfile().data._id)
       console.log(userId)
-      
+
       const { newLibraryData } = await addLibrary({
         variables: {
           libraryname: `${formState.username}'s Library`,
-          libraryowner: userId,
+          libraryowner: formState.username,
           books: []
         }
       });
+      
+
 
       console.log(newLibraryData)
       debugger
+      
     } catch (e) {
       console.error(e);
     }

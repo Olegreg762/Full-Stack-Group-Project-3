@@ -118,7 +118,7 @@ const BookAddPage = () => {
         <>
           <div className="text-light bg-dark p-5">
             <Container>
-              <h1>Search for Books!</h1>
+              <h1>Add Books To Your Library!</h1>
               <Form onSubmit={handleFormSubmit}>
                 <Row>
                   <Col xs={12} md={8}>
@@ -128,7 +128,7 @@ const BookAddPage = () => {
                       onChange={(e) => setSearchInput(e.target.value)}
                       type='text'
                       size='lg'
-                      placeholder='Search for a book'
+                      placeholder='Search for a book by title'
                     />
                   </Col>
                   <Col xs={12} md={4}>

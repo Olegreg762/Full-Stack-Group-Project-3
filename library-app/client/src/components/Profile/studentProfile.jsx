@@ -1,17 +1,29 @@
 import React from "react";
 import ProgressBar from "../ProgressBar"
 const StudentProfile = ({user}) => {
-    // const testData = [
-    //     { bgcolor: "#6a1b9a", completed: 60 }
-    // ]
+    // const handleButtonClick = async () => {
+    //     try {
+    //         if(available) {
+    //             const {data} = await checkoutBook({
+    //                 variables: {
+    //                     userId: userId,
+    //                     bookId: bookId
+    //                 }
+    //             });
+    //         }}catch (error) {
+    //             console.log('error')
+    //         }
+    //     }
+    // }
     const bgcolor= "#6a1b9a"
     return (
         <div className="bg-dark">
             <h1 className="text-center text-white">Profile Page!</h1>
             <div className="d-flex justify-content-around">
                 <div className="profile-books border border-4 border-secondary p-5">
+                    <h2 className="text-center text-white">My Checked Out Books</h2>
                     {/*Pulls completed book from the database and uses the google api to get info, plus pulls comments */}
-                    {
+                    { user?.checkedbooks.length ?
                         user?.checkedbooks?.map((book) => (        
                         <div>
                             <ul>
@@ -20,18 +32,21 @@ const StudentProfile = ({user}) => {
                                     <p>{book.authors}</p>
                                 </li>
                             </ul>
-                        </div>))
+                        </div>)) :
+                        <p className="text-center text-white">No Books Checked Out Yet!</p>
                     }
 
                 </div>
                 <div className="profile-goals">
                     {/* Goal svg to update percent}
                 {Goals in number that auto increases when book is read */}
-
+                    <h2 className="text-center text-white">30 Book Challenge Progress</h2>
                     <div className="profile-goal-svg border border-4 border-secondary p-5 d-flex justify-content-center p-5">
-                        
-                            <ProgressBar bgcolor={bgcolor} completed={(user?.readBooks?.length/user?.checkedbooks?.length)*100} />
-                    
+                        { user?.readBooks?.length ?
+                            <ProgressBar bgcolor={bgcolor} completed={(user?.readBooks?.length/30)*100} />
+                            :
+                            <ProgressBar bgcolor={bgcolor} completed={0} />
+                        }
                     </div>
                     <div className="profile-goal-defined">
                         {/* div to house goal in numbers */}

@@ -28,7 +28,7 @@ const ProfilePage = () => {
     return (
      
         <>
-        {user.isteacher ? <TeacherProfile/> : <StudentProfile/> }</>
+        {user.isteacher ? <TeacherProfile user={user}/> : <StudentProfile user={user}/> }</>
 
     )
 }

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../utils/mutations';
+import { ADD_USER, ADD_BOOK_LIBRARY, ADD_LIBRARY } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 
@@ -14,6 +14,7 @@ const Signup = () => {
     isteacher: ''
   });
   const [addUser, { error, data }] = useMutation(ADD_USER);
+  const [addLibrary, {error: newLibraryerror, data: newLibraryData}] = useMutation(ADD_LIBRARY);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -26,7 +27,6 @@ const Signup = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
 
 
     let isteacher = false
@@ -43,7 +43,20 @@ const Signup = () => {
         },
       });
 
-      Auth.login(data.login.token);
+      Auth.login(data);
+      const userId = (Auth.getProfile().data._id)
+      console.log(userId)
+      
+      const { newLibraryData } = await addLibrary({
+        variables: {
+          libraryname: `${formState.username}'s Library`,
+          libraryowner: userId,
+          books: []
+        }
+      });
+
+      console.log(newLibraryData)
+      debugger
     } catch (e) {
       console.error(e);
     }

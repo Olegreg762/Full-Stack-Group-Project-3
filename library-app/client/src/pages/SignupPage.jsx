@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useMutation } from '@apollo/client';
-import { ADD_USER, ADD_BOOK_LIBRARY, ADD_LIBRARY } from '../utils/mutations';
+import { ADD_USER, ADD_LIBRARY, CREATE_USER_AND_LIBRARY, LOGIN } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 
@@ -13,7 +13,8 @@ const Signup = () => {
     password: '',
     isteacher: ''
   });
-  const [addUser, { error, data }] = useMutation(ADD_USER);
+  const [login, { error, data }] = useMutation(LOGIN)
+  const [addUser, { error:userError, data: userData }] = useMutation(ADD_USER);
   const [addLibrary, {error: newLibraryerror, data: newLibraryData}] = useMutation(ADD_LIBRARY);
 
   const handleChange = (event) => {
@@ -36,27 +37,29 @@ const Signup = () => {
     }
 
     try {
-      const { data } = await addUser({
+      const { userData } = await addUser({
         variables: { 
           ...formState,
           isteacher
         },
+      
       });
 
-      Auth.login(data);
+      const { data } = await login({
+        variables: { ...formState }
+      })
+      Auth.login(data.login.token);
+      if(isteacher){
       const userId = (Auth.getProfile().data._id)
-      console.log(userId)
-      
       const { newLibraryData } = await addLibrary({
         variables: {
-          libraryname: `${formState.username}'s Library`,
+          libraryname: `${formState.username} Library`,
           libraryowner: userId,
           books: []
         }
       });
+    }
 
-      console.log(newLibraryData)
-      debugger
     } catch (e) {
       console.error(e);
     }

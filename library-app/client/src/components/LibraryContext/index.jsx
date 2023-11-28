@@ -21,10 +21,19 @@ const UpdateLibrary = () => {
 
     return (
         <LibraryChoicePage>
-
+            <form
+                type="form"
+                id="form"
+                className="form"
+                onSubmit={updateOnSubmit}
+            >
+                {libraryElements}
+            </form>
         </LibraryChoicePage>
     )
 }
+
+export default { UpdateLibrary }
 
 // const AddLibrary = () => {
 //     const [state, dispatch] = useLibraryContext();

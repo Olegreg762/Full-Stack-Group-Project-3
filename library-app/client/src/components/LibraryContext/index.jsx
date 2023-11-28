@@ -9,6 +9,7 @@ const UpdateLibrary = () => {
         e.preventDefault();
         dispatch({
             type: UPDATE_LIBRARY,
+            payload: e,
         });
 
         const updateLibraryResults = state.isValid
@@ -20,7 +21,40 @@ const UpdateLibrary = () => {
 
     return (
         <LibraryChoicePage>
-
+            <form
+                type="form"
+                id="form"
+                className="form"
+                onSubmit={updateOnSubmit}
+            >
+                {libraryElements}
+            </form>
         </LibraryChoicePage>
     )
 }
+
+export default { UpdateLibrary }
+
+// const AddLibrary = () => {
+//     const [state, dispatch] = useLibraryContext();
+
+//     const addOnClick = (e) => {
+//         e.preventDefault();
+//         dispatch({
+//             type: ADD_LIBRARY,
+//             payload: e,
+//         });
+
+//         const addLibraryResults = state.isValid
+//             ? 'Successfully added library'
+//             : 'Failed to add Library'
+
+//              alert(addLibraryResults);
+//     };
+
+//     return (
+//         <LibraryChoicePage>
+
+//         </LibraryChoicePage>
+//     )
+// }

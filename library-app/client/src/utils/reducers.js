@@ -34,7 +34,7 @@ export const reducer = (state, action) => {
                 books: newCheckedLibrary,
                 checkedbooks: newCheckedBooks,
             }
-        // Need assitance on figuring out checkout logic and process
+
         case BOOK_RETURN:
             let newReturnLibrary = state.library.filter((book) => {
                 if (book._id == action._id) {
@@ -45,21 +45,50 @@ export const reducer = (state, action) => {
             let returnedBooks = state.checkedbooks.filter((book) => {
                 return book._id !== action._id
             });
+
+            let newReadBooks = state.library.filter((book) => {
+                if (book._id == action.id) {
+                    return state.user.readBooks.push(book)
+                }
+            });
             
             return {
                 ...state,
                 books: newReturnLibrary,
                 checkedbooks: returnedBooks,
+                readBooks: newReadBooks
             }
 
         case ADD_BOOK_TO_LIBRARY:
+            let newLibraryBooks = state.filter((library, book) => {
+                return library.books.push(book)
+            });
+
+            return {
+                ...state,
+                library: {
+                    books: newLibraryBooks,
+                }
+            }
 
         case REMOVE_BOOK_FROM_LIBRARY:
+            let updatedLibraryBooks = state.filter((library, book) => {
+                return library.books.splice(book)
+            });
 
-        case ADD_LIBRARY:
             return {
-                
+                ...state,
+                library: {
+                    books: updatedLibraryBooks,
+                }
             }
+
+        // case ADD_LIBRARY:
+        //     return {
+        //         ...state,
+        //         libraries: action.payload[0],
+        //         books: action.payload[1]
+        //     }
 
         case DELETE_LIBRARY:
             return {
@@ -67,8 +96,8 @@ export const reducer = (state, action) => {
                 libraries: state.libraries.filter((library) => library.id !== action.payload)
             }
         
-            case UPDATE_LIBRARY:
-               return state.map((library) => {
+        case UPDATE_LIBRARY:
+            return state.map((library) => {
                 if (library._id == action.payload._id) {
                     return {
                         ...state,
@@ -80,6 +109,6 @@ export const reducer = (state, action) => {
                         libraries: library
                     }
                 }
-                });
+            });
     }
 }

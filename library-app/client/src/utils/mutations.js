@@ -107,4 +107,18 @@ mutation UpdateUser($userId: ID!, $user: UserInput!) {
       username
     }
   }
-`
+`;
+
+export const ADD_LIBRARY = gql`
+  mutation addLibrary($libraryname: String!, $libraryowner: ID!, $books:[ID]) {
+    addLibrary(libraryname: $libraryname, libraryowner: $libraryowner, books: $books) {
+        _id
+        libraryname
+        libraryowner {
+            _id
+        }
+        books {
+            _id
+        }
+    }
+}`;

@@ -65,8 +65,8 @@ const resolvers = {
         addUser: async (parent, { username, email, password, isteacher, checkedbooks }) => {
             return await User.create({ username, email, password, isteacher, checkedbooks })
         }, 
-        addLibrary: async (parent, {libraryname, libraryowner, books}) => {
-            return await Library.create({libraryname, libraryowner, books})
+        addLibrary: async (parent, {libraryname, libraryowner}) => {
+            return await Library.create({libraryname, libraryowner})
         },
         //TODO: Functions for removing book from library, updating book values, deleting libraries, deleting users, updating users, updating library info
 

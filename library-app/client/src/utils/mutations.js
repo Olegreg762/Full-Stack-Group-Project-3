@@ -110,8 +110,8 @@ mutation UpdateUser($userId: ID!, $user: UserInput!) {
 `;
 
 export const ADD_LIBRARY = gql`
-  mutation addLibrary($libraryname: String!, $libraryowner: ID!, $books:[ID]) {
-    addLibrary(libraryname: $libraryname, libraryowner: $libraryowner, books: $books) {
+  mutation addLibrary($libraryname: String!, $libraryowner: ID!) {
+    addLibrary(libraryname: $libraryname, libraryowner: $libraryowner) {
         _id
         libraryname
         libraryowner {
@@ -122,3 +122,5 @@ export const ADD_LIBRARY = gql`
         }
     }
 }`;
+
+  

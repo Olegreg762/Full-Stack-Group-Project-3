@@ -3,8 +3,8 @@ import React from "react";
 const TeacherProfile = ({user}) => {
     
     return (
-        <div className="">
-            <h1 className="text-center">Profile Page!</h1>
+        <div className="bg-dark">
+            <h1 className="text-center text-white">Profile Page!</h1>
             <div className="d-flex justify-content-around">
                 <div className="profile-books border border-4 border-secondary p-5">
                     {/*Pulls completed book from the database and uses the google api to get info, plus pulls comments */}

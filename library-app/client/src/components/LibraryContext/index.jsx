@@ -9,7 +9,6 @@ const UpdateLibrary = () => {
         e.preventDefault();
         dispatch({
             type: UPDATE_LIBRARY,
-            payload: e,
         });
 
         const updateLibraryResults = state.isValid

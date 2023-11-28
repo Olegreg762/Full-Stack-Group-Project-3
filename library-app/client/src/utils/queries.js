@@ -94,17 +94,28 @@ export const QUERY_USER = gql`
     }
 `;
 
-export const QUERY_ONE_USER = gql`query User($id: ID!) {
-    user(_id: $id) {
-      _id
-      checkedbooks {
-        title
-        link
-        authors
-        image
-      }
-      isteacher
-      username
-      email
-    }
+export const QUERY_ONE_USER = gql`
+    query User($id: ID!) {
+        user(_id: $id) {
+          email
+          isteacher
+          username
+          readBooks {
+            title
+            image
+            description
+            bookId
+            authors
+            _id
+          }
+          checkedbooks {
+            _id
+            authors
+            bookId
+            description
+            image
+            title
+          }
+        }
+      
   }`

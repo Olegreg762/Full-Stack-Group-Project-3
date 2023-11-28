@@ -34,7 +34,7 @@ export const reducer = (state, action) => {
                 books: newCheckedLibrary,
                 checkedbooks: newCheckedBooks,
             }
-        // Need assitance on figuring out checkout logic and process
+
         case BOOK_RETURN:
             let newReturnLibrary = state.library.filter((book) => {
                 if (book._id == action._id) {
@@ -60,8 +60,28 @@ export const reducer = (state, action) => {
             }
 
         case ADD_BOOK_TO_LIBRARY:
+            let newLibraryBooks = state.filter((library, book) => {
+                return library.books.push(book)
+            });
+
+            return {
+                ...state,
+                library: {
+                    books: newLibraryBooks,
+                }
+            }
 
         case REMOVE_BOOK_FROM_LIBRARY:
+            let updatedLibraryBooks = state.filter((library, book) => {
+                return library.books.splice(book)
+            });
+
+            return {
+                ...state,
+                library: {
+                    books: updatedLibraryBooks,
+                }
+            }
 
         // case ADD_LIBRARY:
         //     return {

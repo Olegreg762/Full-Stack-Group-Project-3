@@ -63,14 +63,12 @@ export const reducer = (state, action) => {
 
         case REMOVE_BOOK_FROM_LIBRARY:
 
-        case ADD_LIBRARY:
-            return {
-                ...state,
-                libraries: action.payload[0],
-                books: action.payload[1]
-            }
-                
-            
+        // case ADD_LIBRARY:
+        //     return {
+        //         ...state,
+        //         libraries: action.payload[0],
+        //         books: action.payload[1]
+        //     }
 
         case DELETE_LIBRARY:
             return {

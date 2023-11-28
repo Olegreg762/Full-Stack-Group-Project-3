@@ -26,6 +26,26 @@ const UpdateLibrary = () => {
     )
 }
 
-const AddLibrary = () => {
+// const AddLibrary = () => {
+//     const [state, dispatch] = useLibraryContext();
 
-}
+//     const addOnClick = (e) => {
+//         e.preventDefault();
+//         dispatch({
+//             type: ADD_LIBRARY,
+//             payload: e,
+//         });
+
+//         const addLibraryResults = state.isValid
+//             ? 'Successfully added library'
+//             : 'Failed to add Library'
+
+//              alert(addLibraryResults);
+//     };
+
+//     return (
+//         <LibraryChoicePage>
+
+//         </LibraryChoicePage>
+//     )
+// }

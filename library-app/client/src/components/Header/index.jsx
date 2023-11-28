@@ -17,20 +17,20 @@ const Header = () => {
     <span className="navbar-toggler-icon"></span>
   </button>
   {auth.loggedIn() ?
-  <div class="collapse navbar-collapse" id="navbarNav">
+  <div class="collapse navbar-collapse justify-content-right" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item">
+      <li class="nav-item p-2">
         <Link to='/' class="nav-link active text-white" aria-current="page">Home</Link>
       </li>
-      <li className="nav-item">
+      <li className="nav-item p-2">
         <Link to='profile' className="nav-link text-white"> Profile </Link>
       </li>
-      <li className="nav-item">
+      <li className="nav-item p-2">
        <Link to='/libraries' className="nav-link text-white">Libraries</Link>
       </li>
     </ul>
     <>
-          <button className="btn btn-m btn-dark m-4 float-end" onClick={logout}>
+          <button className="btn btn-m btn-dark m-4 " onClick={logout}>
             Logout
           </button>
         </>

@@ -56,7 +56,8 @@ const HomePage = () => {
 
   return (
     <div>
-      <h1 className="bg-dark text-white p-5 text-center m-0">Welcome to CLEO! </h1>
+      <h1 className="bg-dark text-white p-5-5-5 text-center m-0">Welcome to the Catalog for Literary Exploration and Organization </h1>
+      <h3 className="bg-dark text-white m-0 text-center">or C.L.E.O. for short!</h3>
        {auth.loggedIn() || auth.getToken() ? (
         <>
           

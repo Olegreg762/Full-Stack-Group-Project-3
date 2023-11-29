@@ -1,6 +1,9 @@
 {
   "name": "server",
   "version": "1.0.0",
+  "engines": {
+    "node": "20.x"
+  },
   "description": "",
   "main": "server.js",
   "scripts": {
@@ -13,7 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "@apollo/server": "^4.7.2",
-    "bcrypt": "^4.0.1",
+    
     "express": "^4.17.2",
     "graphql": "^16.6.0",
     "jsonwebtoken": "^8.5.1",

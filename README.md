@@ -5,6 +5,9 @@
   
   Library App for Teachers to Lend Out Books
 
+  Try the app at [Here](https://cleobooks-c08c9ce9ac1e.herokuapp.com/)
+  ![screenshot](./images/screenshot.png)
+
   ## Table of Contents
   * [Installation](#installation)
   * [Usage](#usage)

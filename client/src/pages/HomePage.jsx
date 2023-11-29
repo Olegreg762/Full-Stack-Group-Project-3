@@ -60,7 +60,6 @@ const HomePage = () => {
       <h3 className="bg-dark text-white m-0 text-center">or C.L.E.O. for short!</h3>
        {auth.loggedIn() || auth.getToken() ? (
         <>
-          
         </>
       ) : (
         <>

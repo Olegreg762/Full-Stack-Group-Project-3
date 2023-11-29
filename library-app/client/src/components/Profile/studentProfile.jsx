@@ -1,20 +1,7 @@
 import React from "react";
 import ProgressBar from "../ProgressBar"
 const StudentProfile = ({user}) => {
-    // const handleButtonClick = async () => {
-    //     try {
-    //         if(available) {
-    //             const {data} = await checkoutBook({
-    //                 variables: {
-    //                     userId: userId,
-    //                     bookId: bookId
-    //                 }
-    //             });
-    //         }}catch (error) {
-    //             console.log('error')
-    //         }
-    //     }
-    // }
+
     const bgcolor= "#6a1b9a"
     return (
         <div className="bg-dark">
@@ -25,11 +12,11 @@ const StudentProfile = ({user}) => {
                     {/*Pulls completed book from the database and uses the google api to get info, plus pulls comments */}
                     { user?.checkedbooks.length ?
                         user?.checkedbooks?.map((book) => (        
-                        <div className="text-center text-white">
+                        <div className="text-center text-white ">
                             <ul>
-                                <li key={book._id}>
-                                    <p>{book.title}</p>
-                                    <p>{book.authors}</p>
+                                <li className= "list-group-item border"key={book._id}>
+                                    <p>Title: {book.title}</p>
+                                    <p>Author: {book.authors}</p>
                                 </li>
                             </ul>
                         </div>)) :

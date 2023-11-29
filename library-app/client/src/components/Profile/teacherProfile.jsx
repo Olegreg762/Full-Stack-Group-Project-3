@@ -37,7 +37,7 @@ const TeacherProfile = ({user}) => {
                         user?.checkedbooks?.map((book) => (        
                         <div>
                             <ul>
-                                <li key={book._id}>
+                                <li className= "list-group-item border" key={book._id}>
                                     <p>{book.title}</p>
                                     <p>{book.authors}</p>
                                 </li>

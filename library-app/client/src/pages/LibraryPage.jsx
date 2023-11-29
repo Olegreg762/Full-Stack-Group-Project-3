@@ -57,7 +57,7 @@ const BookActions = ({bookId, userId, available, refetch}) => {
     }
     refetch()
     return (
-        <button onClick={handleButtonClick} disabled={checkedOutOther}>
+        <button className="btn btn-lg btn-block btn-dark m-3" onClick={handleButtonClick} disabled={checkedOutOther}>
             {checkedOutOther ? "Currently Checked Out" : available ? "Check Out" : "Return"}
         </button>
     )
@@ -95,10 +95,12 @@ const LibraryPage = () => {
                 ))
     
         return (
-            <div>
+            <div className="bg-dark p-4">
+            <div className="bg-dark text-white">
                 <h1>Welcome to {data.library.libraryname}</h1>
-                 <h3> Books:</h3>
-                <div>{libraryElements}</div>
+                 <h3 className="m-0"> Books:</h3>
+                <div className="fs-4">{libraryElements}</div>
+            </div>
             </div>
         )
 }

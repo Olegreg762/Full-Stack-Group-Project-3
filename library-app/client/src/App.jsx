@@ -49,7 +49,7 @@ const httpLink = createHttpLink({
 function App() {
   return (
     
-    <ApolloProvider client={client}>
+    <ApolloProvider client={client} >
         <Header />
         <Outlet />
         <Footer />

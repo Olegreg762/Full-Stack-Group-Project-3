@@ -118,10 +118,10 @@ const BookAddPage = () => {
         <>
           <div className="text-light bg-dark p-5">
             <Container>
-              <h1>Add Books To Your Library!</h1>
+              <h1 className="text-center">Add Books To Your Library!</h1>
               <Form onSubmit={handleFormSubmit}>
-                <Row>
-                  <Col xs={12} md={8}>
+                <div className="d-flex flex-column justify-content-center align-items-center">
+                  <div  xs={12} md={8}>
                     <Form.Control
                       name='searchInput'
                       value={searchInput}
@@ -130,27 +130,27 @@ const BookAddPage = () => {
                       size='lg'
                       placeholder='Search for a book by title'
                     />
-                  </Col>
-                  <Col xs={12} md={4}>
-                    <Button type='submit' variant='success' size='lg'>
+                  </div>
+                  <Col xs={12} md={4} className="text-center">
+                    <Button type='submit' variant='dark' size='lg' >
                       Submit Search
                     </Button>
                   </Col>
-                </Row>
+                </div>
               </Form>
             </Container>
           </div>
     
-          <Container>
-            <h2 className='pt-5'>
+          <div className="bg-dark m-0">
+            <h2 className='text-white bg-dark text-center m-0'>
               {searchedBooks.length
                 ? `Viewing ${searchedBooks.length} results:`
-                : 'Search for a book to begin'}
+                : 'Search for a book to begin!'}
             </h2>
-            <Row>
+            <Row className="p-5">
               {searchedBooks.map((book) => {
                 return (
-                  <Col md="4" key={book.bookId}>
+                  <Col className="mb-5" md="4" key={book.bookId}>
                     <Card border='dark'>
                       {book.image ? (
                         <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' />
@@ -175,7 +175,7 @@ const BookAddPage = () => {
                 );
               })}
             </Row>
-          </Container>
+          </div>
         </>
       );
 }

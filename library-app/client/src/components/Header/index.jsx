@@ -30,7 +30,7 @@ const Header = () => {
       </li>
     </ul>
     <>
-          <button className="btn btn-m btn-dark m-4 " onClick={logout}>
+          <button className="btn btn-m btn-dark m-0-2-0-0 p-2" onClick={logout}>
             Logout
           </button>
         </>

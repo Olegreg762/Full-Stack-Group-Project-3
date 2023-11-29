@@ -16,5 +16,14 @@
         "link": "https://placehold.co/600x400",
         "title": "Hold My Cap",
         "available": false
+    },
+    {
+        "authors": "J K. ROFLING",
+        "description": "Fantastic Beasts and Where to Find Them: Coloring Book is parody of Fantastic Beasts and Where to Find Them: Magical Creatures Coloring Book. Harry Potter fans are loving coloring this book.",
+        "bookId": 3,
+        "image": "",
+        "link": "",
+        "title": "Fantastic Beasts and Where to Find Them",
+        "available": true
     }
 ]

@@ -8,13 +8,13 @@ const Footer = () => {
       <div className="text-center">
         {location.pathname !== '/' && (
           <button
-            className="btn  btn-lg btn-block btn-darks text-white"
+            className="btn btn-lg btn-block btn-dark m-3"
             onClick={() => navigate(-1)}
           >
             &larr; Go Back
           </button>
         )}
-        <h4 className='text-center text-white p-5'>&copy; {new Date().getFullYear()} - C.L.E.O.</h4>
+        <h4 className='text-center text-white p-5  m-0'>&copy; {new Date().getFullYear()} - C.L.E.O.</h4>
       </div>
     </footer>
   );

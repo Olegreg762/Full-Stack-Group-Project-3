@@ -7,7 +7,7 @@ const LibraryHub = () => {
     const isUserTeacher  = auth.getProfile().data.isteacher;
     console.log(auth.getProfile())
         return (
-            <div>
+            <div className="bg-dark mb-0 text-white">
                 {isUserTeacher ? <BookAddPage/> : <LibraryChoicePage/>}
             </div>
     )

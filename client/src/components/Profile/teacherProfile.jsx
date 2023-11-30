@@ -22,22 +22,23 @@ const TeacherProfile = ({user}) => {
         <div className="bg-dark">
             <h1 className="text-center text-white">Profile Page!</h1>
             <div className="d-flex justify-content-around">
-                <div className="profile-books border border-4 border-secondary p-5">
+                <div className="profile-books p-5">
                     {/*Pulls completed book from the database and uses the google api to get info, plus pulls comments */}
                     {libraries.length ?libraries.map((library) => 
                     <Link key={library._id} to={`/libraries/${library._id}`} component={LibraryPage} className="btn">
-            <h2><button>{library.libraryname}</button></h2>
+            <h2><button className="btn  btn-lg btn-block btn-dark text-white p-2 fs-2">{library.libraryname}</button></h2>
         </Link>) : <h2 className="text-center text-white">No libraries created yet! </h2>}
 
                 </div>
-                <div className="profile-books border border-4 border-secondary p-5">
+                <div className="profile-books  p-5">
                     <h2 className="text-center text-white">My Checked Out Books</h2>
                     {/*Pulls completed book from the database and uses the google api to get info, plus pulls comments */}
                     { user?.checkedbooks.length ?
                         user?.checkedbooks?.map((book) => (        
                         <div>
                             <ul>
-                                <li className= "list-group-item border" key={book._id}>
+                                <li className= "list-group-item text-white fs-3 text-center" key={book._id}>
+                                    <img src = {book.image}></img>
                                     <p>{book.title}</p>
                                     <p>{book.authors}</p>
                                 </li>

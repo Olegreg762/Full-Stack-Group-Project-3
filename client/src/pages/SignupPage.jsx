@@ -77,9 +77,9 @@ const Signup = () => {
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
-              <form onSubmit={handleFormSubmit} className='bg-dark text-center'>
+              <form onSubmit={handleFormSubmit} className='bg-dark text-center d-flex flex-column align-items-center'>
                 <input
-                  className="form-input"
+                  className="form-input m-1"
                   placeholder="Your username"
                   name="username"
                   type="text"
@@ -87,7 +87,7 @@ const Signup = () => {
                   onChange={handleChange}
                 />
                 <input
-                  className="form-input"
+                  className="form-input m-1"
                   placeholder="Your email"
                   name="email"
                   type="email"
@@ -95,14 +95,14 @@ const Signup = () => {
                   onChange={handleChange}
                 />
                 <input
-                  className="form-input"
+                  className="form-input m-1"
                   placeholder="******"
                   name="password"
                   type="password"
                   value={formState.password}
                   onChange={handleChange}
                 />
-                 <select class="form-select" aria-label="Default select example"                   
+                 <select class="form-select " aria-label="Default select example"                   
                value={formState.isteacher}
                 onChange={handleChange}
                 name= "isteacher">

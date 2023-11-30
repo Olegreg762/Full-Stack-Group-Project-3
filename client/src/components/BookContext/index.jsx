@@ -52,7 +52,7 @@ const ReturnBook = () => {
             <button
                 type='button'
                 id='button'
-                className='btn'
+                className="btn  btn-lg btn-block btn-dark text-white p-2 fs-2"
                 onClick={returnOnClick}
             >
                 Checkout Book

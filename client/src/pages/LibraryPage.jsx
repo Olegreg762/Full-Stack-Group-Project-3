@@ -57,7 +57,7 @@ const BookActions = ({bookId, userId, available, refetch}) => {
     }
     refetch()
     return (
-        <button onClick={handleButtonClick} disabled={checkedOutOther}>
+        <button onClick={handleButtonClick} disabled={checkedOutOther} className="btn  btn-lg btn-block btn-dark text-white p-2 m-2 fs-4">
             {checkedOutOther ? "Currently Checked Out" : available ? "Check Out" : "Return"}
         </button>
     )
@@ -79,8 +79,8 @@ const LibraryPage = () => {
     if(loading) return <p></p>;
 
     const libraryElements = data.library.books.map((book) => (
-        <div>
-            <ul>
+        <div className="bg-dark fs-4">
+            <ul className="mb-0">
                 <li key={book._id}>
                     {book.title}
                     <BookActions
@@ -95,7 +95,7 @@ const LibraryPage = () => {
                 ))
     
         return (
-            <div>
+            <div className="bg-dark text-white">
                 <h1>Welcome to {data.library.libraryname}</h1>
                  <h3> Books:</h3>
                 <div>{libraryElements}</div>

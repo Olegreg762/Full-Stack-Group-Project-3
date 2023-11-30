@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="text-center">
         {location.pathname !== '/' && (
           <button
-            className="btn  btn-lg btn-block btn-darks text-white"
+          className="btn  btn-lg btn-block btn-dark text-white p-2 fs-2"
             onClick={() => navigate(-1)}
           >
             &larr; Go Back

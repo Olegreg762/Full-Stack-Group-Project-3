@@ -116,12 +116,12 @@ const BookAddPage = () => {
       
     return (
         <>
-          <div className="text-light bg-dark p-5">
-            <Container>
-              <h1>Add Books To Your Library!</h1>
+          <div className="text-light bg-dark p-5 text-center d-flex justify-content-center">
+            <div>
+              <h1 className="">Add Books To Your Library!</h1>
               <Form onSubmit={handleFormSubmit}>
                 <Row>
-                  <Col xs={12} md={8}>
+                  <Col xs={12} md={8} className="pt-4">
                     <Form.Control
                       name='searchInput'
                       value={searchInput}
@@ -132,25 +132,25 @@ const BookAddPage = () => {
                     />
                   </Col>
                   <Col xs={12} md={4}>
-                    <Button type='submit' variant='success' size='lg'>
+                    <Button type='submit' variant='success' size='lg className="btn  btn-lg btn-block btn-dark text-white p-2 pt-4 fs-2"'>
                       Submit Search
                     </Button>
                   </Col>
                 </Row>
               </Form>
-            </Container>
+            </div>
           </div>
     
-          <Container>
-            <h2 className='pt-5'>
+          <div>
+            <h2 className='bg-dark text-white m-0 text-center'>
               {searchedBooks.length
                 ? `Viewing ${searchedBooks.length} results:`
                 : 'Search for a book to begin'}
             </h2>
-            <Row>
+            <Row className="bg-dark p-2">
               {searchedBooks.map((book) => {
                 return (
-                  <Col md="4" key={book.bookId}>
+                  <Col md="4" key={book.bookId} className="bg-dark mb-2">
                     <Card border='dark'>
                       {book.image ? (
                         <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' />
@@ -175,7 +175,7 @@ const BookAddPage = () => {
                 );
               })}
             </Row>
-          </Container>
+          </div>
         </>
       );
 }

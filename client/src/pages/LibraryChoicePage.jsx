@@ -16,14 +16,14 @@ const LibraryChoicePage = () => {
         
     const libraryElements = libraryQueryData.libraries.map((library) => (
         
-        <Link key={library._id} to={`/libraries/${library._id}`} component={LibraryPage} className="library-card">
-            <h2><button className="btn  btn-lg btn-block btn-dark text-white p-2 fs-2">{library.libraryname}</button></h2>
+        <Link key={library._id} to={`/libraries/${library._id}`} component={LibraryPage} className="library-card text-center m-0">
+            <h2><button className="btn  btn-lg btn-block btn-dark text-white p-2 fs-2 m-0">{library.libraryname}</button></h2>
         </Link>
     ))
         return (
-            <div>
-                <h1>Library Hub!</h1>
-                <div>{libraryElements}</div>
+            <div className="p-2">
+                <h1 className="text-center">Library Hub!</h1>
+                <div className="m-0">{libraryElements}</div>
             </div>
     )
 }
